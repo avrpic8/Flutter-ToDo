@@ -6,7 +6,7 @@ import 'package:to_do/app/data/models/task.dart';
 import 'package:to_do/app/data/services/storage/services.dart';
 
 class TaskProvider {
-  final StorageService _storage = Get.find<StorageService>();
+  final _storage = Get.find<StorageService>();
 
   List<Task> readTasks() {
     var tasks = <Task>[];
@@ -15,5 +15,7 @@ class TaskProvider {
     return tasks;
   }
 
-
+  void writeTasks(List<Task> tasks){
+    _storage.write(taskKey, jsonEncode(tasks));
+  }
 }
