@@ -24,8 +24,8 @@ class TaskCard extends StatelessWidget {
         boxShadow: [
           BoxShadow(
             color: Colors.grey[300]!,
-            blurRadius: 7,
-            offset: const Offset(0, 7),
+            blurRadius: 3,
+            offset: const Offset(0, 3),
           )
         ],
       ),
