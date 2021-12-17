@@ -31,19 +31,17 @@ class AddDialog extends StatelessWidget {
                   ),
                   TextButton(
                     onPressed: () {
-                      if(homeCtr.formKey.currentState!.validate()){
-                        if(homeCtr.task.value == null){
+                      if (homeCtr.formKey.currentState!.validate()) {
+                        if (homeCtr.task.value == null) {
                           EasyLoading.showError('Please select task type');
-                        }else{
+                        } else {
                           var success = homeCtr.updateTask(
-                            homeCtr.task.value!,
-                            homeCtr.editCtr.text
-                          );
-                          if(success){
+                              homeCtr.task.value!, homeCtr.editCtr.text);
+                          if (success) {
                             EasyLoading.showSuccess('Todo item add success');
                             Get.back();
                             homeCtr.changeTask(null);
-                          }else{
+                          } else {
                             EasyLoading.showError('Todo iteme already exist');
                           }
                           homeCtr.editCtr.clear();
@@ -103,18 +101,22 @@ class AddDialog extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Row(children: [
-                          Icon(
-                            IconData(element.icon, fontFamily: 'MaterialIcons'),
-                            color: HexColor.fromHex(element.color),
-                          ),
-                          SizedBox(width: 3.0.wp),
-                          Text(
-                            element.title,
-                            style: TextStyle(
-                                fontSize: 12.0.sp, fontWeight: FontWeight.bold),
-                          ),
-                        ],),
+                        Row(
+                          children: [
+                            Icon(
+                              IconData(element.icon,
+                                  fontFamily: 'MaterialIcons'),
+                              color: HexColor.fromHex(element.color),
+                            ),
+                            SizedBox(width: 3.0.wp),
+                            Text(
+                              element.title,
+                              style: TextStyle(
+                                  fontSize: 12.0.sp,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
                         if (homeCtr.task.value == element)
                           const Icon(
                             Icons.check,

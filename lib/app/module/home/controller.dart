@@ -6,7 +6,7 @@ import 'package:to_do/app/data/services/storage/repository.dart';
 class HomeController extends GetxController {
   TaskRepository taskRepository;
 
-  final formKey  = GlobalKey<FormState>();
+  final formKey = GlobalKey<FormState>();
   final editCtr = TextEditingController();
   final tasks = <Task>[].obs;
   final chipIndex = 0.obs;
@@ -22,19 +22,19 @@ class HomeController extends GetxController {
     ever(tasks, (_) => taskRepository.writeTasks(tasks));
   }
 
-  void changeChipIndex(int value){
+  void changeChipIndex(int value) {
     chipIndex.value = value;
   }
 
-  bool addTask(Task task){
-    if(tasks.contains(task)){
+  bool addTask(Task task) {
+    if (tasks.contains(task)) {
       return false;
     }
     tasks.add(task);
     return true;
   }
 
-  void deleteStatus(bool value){
+  void deleteStatus(bool value) {
     deleting.value = value;
   }
 
@@ -42,12 +42,27 @@ class HomeController extends GetxController {
     tasks.remove(task);
   }
 
-  void changeTask(Task? select){
-      task.value = select;
+  void changeTask(Task? select) {
+    task.value = select;
   }
 
-  void updateTask(Task task, String title) {
+  bool updateTask(Task task, String title) {
     var todos = task.todos ?? [];
+    if (containTodo(todos, title)) {
+      return false;
+    }
+    var todo = {'title': title, 'done': false};
+    todos.add(todo);
+    Task newTask = task.copyWith(todos: todos);
+    int oldIdx = tasks.indexOf(task);
+    tasks[oldIdx] = newTask;
+    tasks.refresh();
+    //print(tasks);
+    return true;
+  }
+
+  bool containTodo(List todos, String title) {
+    return todos.any((element) => element['title'] == title);
   }
 
   @override
