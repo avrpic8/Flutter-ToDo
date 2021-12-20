@@ -27,7 +27,7 @@ class Task extends Equatable {
       todos: json['todos']);
 
   Map<String, dynamic> toJson() =>
-      {'titl': title, 'icon': icon, 'color': color, 'todos': todos};
+      {'title': title, 'icon': icon, 'color': color, 'todos': todos};
 
   @override
   List<Object?> get props => [title, icon, color];
