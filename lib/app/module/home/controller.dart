@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:to_do/app/data/models/task.dart';
 import 'package:to_do/app/data/services/storage/repository.dart';
+import 'package:to_do/app/widgets/icons.dart';
 
 class HomeController extends GetxController {
   TaskRepository taskRepository;
@@ -34,6 +35,7 @@ class HomeController extends GetxController {
       return false;
     }
     tasks.add(task);
+    tasks.refresh();
     return true;
   }
 
@@ -106,6 +108,38 @@ class HomeController extends GetxController {
     int oldIndex = tasks.indexOf(task);
     tasks[oldIndex] = newTask;
     tasks.refresh();
+  }
+
+  void doneTodo(String title) {
+    var doingTodo = {'title': title, 'done': false};
+    int index = doingTodos.indexWhere(
+        (element) => mapEquals<String, dynamic>(doingTodo, element));
+    doingTodos.removeAt(index);
+
+    var doneTodo = {'title': title, 'done': true};
+    doneTodos.add(doneTodo);
+
+    doingTodos.refresh();
+    doneTodos.refresh();
+  }
+
+  void deleteDoneTodo(dynamic doneTodo) {
+    int index = doneTodos
+        .indexWhere((element) => mapEquals<String, dynamic>(doneTodo, element));
+    doneTodos.removeAt(index);
+    doneTodos.refresh();
+  }
+
+  bool isTodoEmpty(Task task) {
+    return task.todos == null || task.todos!.isEmpty;
+  }
+
+  int getdoneTodo(Task task) {
+    var res = 0;
+    for (int i = 0; i < task.todos!.length; i++) {
+      if (task.todos![i]['done'] == true) res += 1;
+    }
+    return res;
   }
 
   @override

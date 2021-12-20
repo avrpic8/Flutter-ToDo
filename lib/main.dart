@@ -6,8 +6,7 @@ import 'package:to_do/app/data/services/storage/services.dart';
 import 'package:to_do/app/module/home/binding.dart';
 import 'package:to_do/app/module/home/view.dart';
 
-void main() async{
-
+void main() async {
   /// init get storage before run app
   await GetStorage.init();
   await Get.putAsync(() => StorageService().init());
