@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 import 'package:to_do/app/core/util/extentions.dart';
 import 'package:to_do/app/data/models/task.dart';
-import 'package:to_do/app/module/details/view.dart';
-import 'package:to_do/app/module/home/controller.dart';
+import 'package:to_do/app/module/details/details_view.dart';
+import 'package:to_do/app/module/home/home_controller.dart';
 
 class TaskCard extends StatelessWidget {
   final homeCtr = Get.find<HomeController>();

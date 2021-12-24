@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:to_do/app/core/util/extentions.dart';
 import 'package:to_do/app/core/values/colors.dart';
 import 'package:to_do/app/data/models/task.dart';
-import 'package:to_do/app/module/home/controller.dart';
+import 'package:to_do/app/module/home/home_controller.dart';
 import 'package:to_do/app/widgets/icons.dart';
 
 class AddCard extends StatelessWidget {

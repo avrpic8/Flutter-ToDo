@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:to_do/app/core/util/extentions.dart';
 import 'package:to_do/app/core/values/colors.dart';
-import 'package:to_do/app/module/home/controller.dart';
+import 'package:to_do/app/module/home/home_controller.dart';
 
 class DoneTodo extends StatelessWidget {
   final homeCtr = Get.find<HomeController>();
