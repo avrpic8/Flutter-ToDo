@@ -3,7 +3,6 @@ import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:to_do/app/data/models/task.dart';
 import 'package:to_do/app/data/services/storage/repository.dart';
-import 'package:to_do/app/widgets/icons.dart';
 
 class HomeController extends GetxController {
   TaskRepository taskRepository;
@@ -124,18 +123,19 @@ class HomeController extends GetxController {
     doneTodos.refresh();
   }
 
-  void deleteDoneTodo(dynamic doneTodo) {
+  int deleteDoneTodo(dynamic doneTodo) {
     int index = doneTodos
         .indexWhere((element) => mapEquals<String, dynamic>(doneTodo, element));
     doneTodos.removeAt(index);
     doneTodos.refresh();
+    return index;
   }
 
   bool isTodoEmpty(Task task) {
     return task.todos == null || task.todos!.isEmpty;
   }
 
-  int getdoneTodo(Task task) {
+  int getDoneTodo(Task task) {
     var res = 0;
     for (int i = 0; i < task.todos!.length; i++) {
       if (task.todos![i]['done'] == true) res += 1;
@@ -143,32 +143,20 @@ class HomeController extends GetxController {
     return res;
   }
 
-  void setTabIndex(int value){
+  void backToDoneTodo({dynamic doneTodo, required int index}) {
+    doneTodos.insert(index, doneTodo);
+    doneTodos.refresh();
+  }
+
+  void setTabIndex(int value) {
     tabIndex.value = value;
   }
 
-  int getTotalTask() {
-    int res = 0;
-    for (int i = 0; i < tasks.length; i++) {
-      if (tasks[i].todos != null) {
-        res += tasks[i].todos!.length;
-      }
-    }
-    return res;
-  }
-
-  int getTotalDoneTask() {
-    int res = 0;
-    for (int i = 0; i < tasks.length; i++) {
-      if (tasks[i].todos != null) {
-        for (int j = 0; j < tasks[i].todos!.length; j++) {
-          if (tasks[i].todos![j]['done'] == true) {
-            res += 1;
-          }
-        }
-      }
-    }
-    return res;
+  Future<bool> saveAndExit(Task task) async {
+    updateTodos(task);
+    editCtr.clear();
+    Get.back();
+    return true;
   }
 
   @override

@@ -60,7 +60,7 @@ class HomePage extends GetView<HomeController> {
                 ],
               ),
             ),
-            ReportPage(),
+            ReportPage(tasks: controller.tasks),
           ],
         ),
       ),

@@ -22,7 +22,7 @@ class DoneTodo extends StatelessWidget {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 12, vertical: 18),
                   child: Text(
-                    'Completed(${homeCtr.doneTodos.length})',
+                    'Completed (${homeCtr.doneTodos.length})',
                     style: TextStyle(
                       fontSize: 14.0.sp,
                       color: Colors.grey,
@@ -34,13 +34,34 @@ class DoneTodo extends StatelessWidget {
                       (element) => Dismissible(
                         key: ObjectKey(element),
                         direction: DismissDirection.endToStart,
-                        onDismissed: (_) => homeCtr.deleteDoneTodo(element),
+                        onDismissed: (_) {
+                          var index = homeCtr.deleteDoneTodo(element);
+                          Get.snackbar(
+                            'Attention!',
+                            'Do you want to reverse this operation?',
+                            mainButton: TextButton(
+                              onPressed: () {
+                                homeCtr.backToDoneTodo(
+                                  doneTodo: element,
+                                  index: index,
+                                );
+                                Get.back();
+                              },
+                              child: const Text('Undo', style: TextStyle(color: green),),
+                            ),
+                            showProgressIndicator: true,
+                            snackPosition: SnackPosition.BOTTOM,
+                          );
+                        },
                         background: Container(
                           color: Colors.red.withOpacity(0.8),
                           alignment: Alignment.centerRight,
-                          child:  Padding(
-                            padding:  EdgeInsets.only(right: 5.0.wp),
-                            child: const Icon(Icons.delete,color: Colors.white,),
+                          child: Padding(
+                            padding: EdgeInsets.only(right: 5.0.wp),
+                            child: const Icon(
+                              Icons.delete,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
                         child: Padding(
