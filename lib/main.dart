@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:to_do/app/core/util/messages.dart';
 import 'package:to_do/app/data/services/storage/services.dart';
 import 'package:to_do/app/module/home/home_binding.dart';
 import 'package:to_do/app/module/home/home_view.dart';
@@ -23,6 +24,8 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
+      translations: Messages(),
+      locale: Locale('en'),
       home: const HomePage(),
       initialBinding: HomeBinding(),
       getPages: [

@@ -26,7 +26,7 @@ class HomePage extends GetView<HomeController> {
                   Padding(
                     padding: EdgeInsets.all(4.0.wp),
                     child: Text(
-                      'My List',
+                      'my_list'.tr,
                       style: TextStyle(
                           fontSize: 24.0.sp, fontWeight: FontWeight.bold),
                     ),
@@ -89,30 +89,33 @@ class HomePage extends GetView<HomeController> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: Theme(
         data: ThemeData(
-          splashColor: Colors.transparent,
-          highlightColor: Colors.transparent,
+          //splashColor: Colors.transparent,
+          //highlightColor: Colors.transparent,
         ),
         child: Obx(
           () => BottomNavigationBar(
+            type: BottomNavigationBarType.fixed,
             onTap: (int index) => controller.setTabIndex(index),
             currentIndex: controller.tabIndex.value,
-            showSelectedLabels: false,
-            showUnselectedLabels: false,
+            //showSelectedLabels: false,
+            //showUnselectedLabels: false,
             elevation: 20,
             items: [
               BottomNavigationBarItem(
-                label: 'Home',
-                icon: Padding(
-                  padding: EdgeInsets.only(right: 15.0.wp),
-                  child: const Icon(Icons.apps),
-                ),
+                label: 'home'.tr,
+                icon: const Icon(Icons.apps),
               ),
               BottomNavigationBarItem(
-                label: 'Report',
-                icon: Padding(
-                  padding: EdgeInsets.only(left: 15.0.wp),
-                  child: const Icon(Icons.data_usage),
-                ),
+                label: 'settings'.tr,
+                icon: const Icon(Icons.settings),
+              ),
+              BottomNavigationBarItem(
+                label: 'report'.tr,
+                icon: const Icon(Icons.data_usage),
+              ),
+              BottomNavigationBarItem(
+                label: 'about'.tr,
+                icon: const Icon(Icons.contact_mail),
               ),
             ],
           ),
