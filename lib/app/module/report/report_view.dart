@@ -5,7 +5,6 @@ import 'package:step_progress_indicator/step_progress_indicator.dart';
 import 'package:to_do/app/core/util/extentions.dart';
 import 'package:to_do/app/core/values/colors.dart';
 import 'package:to_do/app/data/models/task.dart';
-import 'package:to_do/app/module/home/home_controller.dart';
 import 'package:to_do/app/module/report/report_controller.dart';
 
 class ReportPage extends StatelessWidget {

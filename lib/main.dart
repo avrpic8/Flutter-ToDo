@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       translations: Messages(),
       locale: Locale('en'),
-      home: const HomePage(),
+      home: HomePage(),
       initialBinding: HomeBinding(),
       getPages: [
         GetPage(
