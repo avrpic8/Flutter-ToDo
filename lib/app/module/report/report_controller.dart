@@ -3,9 +3,9 @@ import 'package:to_do/app/data/models/task.dart';
 
 class ReportController extends GetxController{
 
-  final List<Task> tasks;
+  late List<Task> tasks;
 
-  ReportController({required this.tasks});
+  void initTask(List<Task> tasks) => this.tasks = tasks;
 
   int getTotalTask() {
     int res = 0;

@@ -10,16 +10,16 @@ import 'package:to_do/app/module/report/report_controller.dart';
 
 class ReportPage extends StatelessWidget {
 
+  final controller = Get.put(ReportController());
   final List<Task> tasks;
-  const ReportPage({Key? key, required this.tasks}) : super(key: key);
+  ReportPage({Key? key, required this.tasks}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
 
-    final reportCtr = Get.put(ReportController(tasks: tasks));
-
-    var createdTasks = reportCtr.getTotalTask();
-    var completeTasks = reportCtr.getTotalDoneTask();
+    controller.initTask(tasks);
+    var createdTasks = controller.getTotalTask();
+    var completeTasks = controller.getTotalDoneTask();
     var liveTasks = createdTasks - completeTasks;
     var percent = (completeTasks / createdTasks * 100);
 
