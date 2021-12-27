@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:to_do/app/core/util/extentions.dart';
 import 'package:to_do/app/core/values/colors.dart';
@@ -10,14 +9,15 @@ import 'package:to_do/app/module/home/widgets/add_card.dart';
 import 'package:to_do/app/module/home/widgets/add_dialog.dart';
 import 'package:to_do/app/module/home/widgets/task_card.dart';
 import 'package:to_do/app/module/report/report_view.dart';
+import 'package:to_do/app/module/settings/settings_view.dart';
 
 class HomePage extends GetView<HomeController> {
-  HomePage({Key? key}) : super(key: key);
-   late DateTime? currentBackPressTime;
+  const HomePage({Key? key}) : super(key: key);
+   //late DateTime? currentBackPressTime;
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: () => _onWillPop(),
+      onWillPop: () => controller.onWillPop(),
       child: Scaffold(
         body: Obx(
           () => IndexedStack(
@@ -64,6 +64,7 @@ class HomePage extends GetView<HomeController> {
                 ),
               ),
               ReportPage(tasks: controller.tasks),
+              SettingsPage(),
             ],
           ),
         ),
@@ -91,9 +92,10 @@ class HomePage extends GetView<HomeController> {
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         bottomNavigationBar: Theme(
-          data: ThemeData(
-            //splashColor: Colors.transparent,
-            //highlightColor: Colors.transparent,
+          data: Theme.of(context).copyWith(
+            splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,
+
           ),
           child: Obx(
             () => BottomNavigationBar(
@@ -109,12 +111,12 @@ class HomePage extends GetView<HomeController> {
                   icon: const Icon(Icons.apps),
                 ),
                 BottomNavigationBarItem(
-                  label: 'settings'.tr,
-                  icon: const Icon(Icons.settings),
-                ),
-                BottomNavigationBarItem(
                   label: 'report'.tr,
                   icon: const Icon(Icons.data_usage),
+                ),
+                BottomNavigationBarItem(
+                  label: 'settings'.tr,
+                  icon: const Icon(Icons.settings),
                 ),
                 BottomNavigationBarItem(
                   label: 'about'.tr,
@@ -127,15 +129,4 @@ class HomePage extends GetView<HomeController> {
       ),
     );
   }
-
-   Future<bool> _onWillPop() async{
-     DateTime now = DateTime.now();
-     if(currentBackPressTime == null || now.difference(currentBackPressTime!) > Duration(seconds: 2)){
-       currentBackPressTime = now;
-       Fluttertoast.showToast(msg: 'Press one again to exit.');
-       print('hi');
-       return false;
-     }
-     return true;
-   }
 }

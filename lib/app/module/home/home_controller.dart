@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:to_do/app/data/models/task.dart';
 import 'package:to_do/app/data/services/storage/repository.dart';
@@ -17,6 +17,7 @@ class HomeController extends GetxController {
   final doingTodos = <dynamic>[].obs;
   final doneTodos = <dynamic>[].obs;
   final tabIndex = 0.obs;
+  DateTime _timeBackPress = DateTime.now();
 
   HomeController({required this.taskRepository});
 
@@ -157,6 +158,21 @@ class HomeController extends GetxController {
     updateTodos(task);
     editCtr.clear();
     Get.back();
+    return true;
+  }
+
+  Future<bool> onWillPop() async {
+    var difference = DateTime.now().difference(_timeBackPress);
+    var isExitWarning = difference >= Duration(seconds: 2);
+    _timeBackPress = DateTime.now();
+
+    if (isExitWarning) {
+      EasyLoading.showToast('Press back again to exit',
+          duration: Duration(seconds: 2),
+          toastPosition: EasyLoadingToastPosition.center);
+      return false;
+    }
+
     return true;
   }
 
