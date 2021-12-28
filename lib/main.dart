@@ -23,12 +23,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final settingsController = Get.put(SettingsController(settingsProvider: SettingsProvider()));
+    final settings = Get.put(SettingsController(settingsProvider: SettingsProvider()));
+    var themeMode = settings.settingsProvider.readParameters('theme') ?? false;
+    var lan = settings.settingsProvider.readParameters('lan') ?? 'en';
+    print('themeMode ${themeMode}');
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       translations: Messages(),
-      locale: Locale('en'),
+      locale: lan == 'en' ? Locale('en') : Locale('fa'),
       home: const HomePage(),
       initialBinding: HomeBinding(),
       getPages: [
@@ -43,6 +46,7 @@ class MyApp extends StatelessWidget {
           binding: ReportBinding(),
         ),
       ],
+      theme: themeMode ? ThemeData.dark() : ThemeData.light(),
       builder: EasyLoading.init(),
     );
   }

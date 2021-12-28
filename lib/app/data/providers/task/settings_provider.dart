@@ -6,11 +6,11 @@ class SettingsProvider{
 
   final _storage = Get.find<StorageService>();
 
-  Settings readParameters(){
-    return _storage.read('settings');
+  readParameters(String key){
+    return _storage.read(key);
   }
 
-  void writeParameters(Settings settings){
-    _storage.write('settings', settings);
+  void writeParameters(String key, dynamic val){
+    _storage.write(key, val);
   }
 }

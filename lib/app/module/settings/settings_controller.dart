@@ -11,26 +11,47 @@ class SettingsController extends GetxController {
 
   SettingsController({required this.settingsProvider});
 
+
+  @override
+  void onInit() {
+    super.onInit();
+    initParametersSettings();
+  }
+
+  void initParametersSettings(){
+    bool theme = settingsProvider.readParameters('theme') ?? false;
+    if(theme){
+      isDark.value = true;
+    }else{
+      isDark.value = false;
+    }
+
+    String lang = settingsProvider.readParameters('lan') ?? 'en';
+    if(lang == 'en'){
+      locale.value = false;
+    }else{
+      locale.value = true;
+    }
+  }
+
   void changeTheme(bool newValue) {
     isDark.value = newValue;
-    settingsProvider.writeParameters(Settings(isDark: isDark.value));
+    settingsProvider.writeParameters('theme', isDark.value);
     if (isDark.value)
       Get.changeTheme(ThemeData.dark());
     else
       Get.changeTheme(ThemeData.light());
-    print(settingsProvider.readParameters());
+    print(settingsProvider.readParameters('theme'));
   }
 
   void changeLanguage(bool newValue) {
     locale.value = newValue;
-    if (locale.value) {
-      settingsProvider.writeParameters(
-          Settings(isDark: isDark.value, locale: Locale('en')));
+    if (!locale.value) {
+      settingsProvider.writeParameters('lan', 'en');
       Get.updateLocale(Locale('en'));
     }
     else {
-      settingsProvider.writeParameters(
-          Settings(isDark: isDark.value, locale: Locale('fa')));
+      settingsProvider.writeParameters('lan', 'fa');
       Get.updateLocale(Locale('fa'));
     }
   }

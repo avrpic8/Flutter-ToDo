@@ -65,12 +65,14 @@ class SettingsPage extends StatelessWidget {
                         SizedBox(
                           height: 8,
                         ),
-                        Text(
-                          'English',
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.grey,
+                        Obx(
+                          () => Text(
+                            controller.locale.value ? 'Persian' : 'English',
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.grey,
+                            ),
                           ),
                         )
                       ],
@@ -128,12 +130,14 @@ class SettingsPage extends StatelessWidget {
                         SizedBox(
                           height: 8,
                         ),
-                        Text(
-                          'Light',
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.grey,
+                        Obx(
+                          () => Text(
+                            controller.isDark.value ? 'Dark' : 'Light',
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.grey,
+                            ),
                           ),
                         )
                       ],
