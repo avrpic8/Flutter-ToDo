@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:to_do/app/core/util/keys.dart';
+import 'package:to_do/app/data/models/settings.dart';
 
 class StorageService extends GetxService {
   late GetStorage _box;
@@ -11,7 +12,13 @@ class StorageService extends GetxService {
     _box = GetStorage();
     //await _box.write(taskKey, []);
     await _box.writeIfNull(taskKey, []);
-    await _box.writeIfNull('settings', jsonEncode({'isDark':false, 'lan':'en','requirePass':false,"splash":false}));
+    await _box.writeIfNull(
+      'settings',
+      jsonEncode(
+        AppSettings(
+            isDark: false, lan: "en", requirePass: false, splash: false),
+      ),
+    );
     return this;
   }
 

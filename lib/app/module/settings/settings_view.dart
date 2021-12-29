@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:to_do/app/core/util/extentions.dart';
+import 'package:to_do/app/module/password/password_view.dart';
 import 'package:to_do/app/module/settings/settings_controller.dart';
 
 class SettingsPage extends StatelessWidget {
@@ -66,7 +67,7 @@ class SettingsPage extends StatelessWidget {
                           height: 8,
                         ),
                         Text(
-                          'English',
+                          controller.locale.value ? 'Persian' : 'English',
                           style: TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.bold,
@@ -82,7 +83,7 @@ class SettingsPage extends StatelessWidget {
                       () => Switch(
                         value: controller.locale.value,
                         onChanged: (newValue) {
-                          //controller.changeLanguage(newValue);
+                          controller.changeLanguage(newValue);
                         },
                       ),
                     ),
@@ -151,8 +152,137 @@ class SettingsPage extends StatelessWidget {
                         },
                       ),
                     ),
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.fromLTRB(4.0.wp, 0, 4.0.wp, 0),
+              child: Divider(
+                thickness: 2,
+              ),
+            ),
+            SizedBox(
+              height: 5,
+            ),
+            Padding(
+              padding: EdgeInsets.fromLTRB(4.0.wp, 0, 0, 0),
+              child: Row(
+                children: [
+                  Icon(
+                    Icons.animation,
+                    size: 22,
+                    color: Colors.grey,
+                  ),
+                  SizedBox(
+                    width: 32,
+                  ),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Splash',
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 8,
+                        ),
+                        Text(
+                          'Enable',
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.grey,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(right: 4.0.wp),
+                    child: Switch(
+                      value: false,
+                      onChanged: (value) {},
+                    ),
                   )
                 ],
+              ),
+            ),
+            SizedBox(
+              height: 5,
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Padding(
+              padding: EdgeInsets.fromLTRB(4.0.wp, 0, 0, 0),
+              child: Text(
+                'Security',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.blueAccent,
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            InkWell(
+              onTap: () {
+                Get.to(PasswordPage());
+              },
+              child: Padding(
+                padding: EdgeInsets.fromLTRB(4.0.wp, 0, 0, 0),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.lock,
+                      size: 22,
+                      color: Colors.grey,
+                    ),
+                    SizedBox(
+                      width: 32,
+                    ),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Password',
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          Text(
+                            'Set your password',
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.grey,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(right: 4.0.wp),
+                      child: Icon(
+                        Icons.arrow_forward_ios_rounded,
+                        color: Colors.grey,
+                        size: 22,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ],

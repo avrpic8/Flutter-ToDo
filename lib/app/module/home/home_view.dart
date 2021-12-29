@@ -69,7 +69,7 @@ class HomePage extends GetView<HomeController> {
                 ),
               ),
               ReportPage(tasks: controller.tasks),
-              //SettingsPage(),
+              SettingsPage(),
             ],
           ),
         ),
