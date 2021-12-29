@@ -1,16 +1,21 @@
+import 'dart:convert';
+
 import 'package:get/get.dart';
-import 'package:to_do/app/data/models/Settings.dart';
+import 'package:to_do/app/data/models/settings.dart';
 import 'package:to_do/app/data/services/storage/services.dart';
 
-class SettingsProvider{
-
+class SettingsProvider {
   final _storage = Get.find<StorageService>();
 
-  readParameters(String key){
-    return _storage.read(key);
+  AppSettings readAppSettings() {
+    var json = _storage.read('settings').toString();
+    Map<String, dynamic> map = jsonDecode(json);
+    final settings = AppSettings.fromJson(map);
+    return settings;
   }
 
-  void writeParameters(String key, dynamic val){
-    _storage.write(key, val);
+  void writeAppSettings(AppSettings settings) {
+    String json = jsonEncode(settings);
+    _storage.write('settings', json);
   }
 }

@@ -13,7 +13,8 @@ import 'package:to_do/app/module/settings/settings_view.dart';
 
 class HomePage extends GetView<HomeController> {
   const HomePage({Key? key}) : super(key: key);
-   //late DateTime? currentBackPressTime;
+
+  //late DateTime? currentBackPressTime;
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -23,48 +24,52 @@ class HomePage extends GetView<HomeController> {
           () => IndexedStack(
             index: controller.tabIndex.value,
             children: [
-              SafeArea(
-                child: ListView(
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.all(4.0.wp),
-                      child: Text(
-                        'my_list'.tr,
-                        style: TextStyle(
-                            fontSize: 24.0.sp, fontWeight: FontWeight.bold),
-                      ),
+              Navigator(
+                onGenerateRoute: (settings) => MaterialPageRoute(
+                  builder: (context) => SafeArea(
+                    child: ListView(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.all(4.0.wp),
+                          child: Text(
+                            'my_list'.tr,
+                            style: TextStyle(
+                                fontSize: 24.0.sp, fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        Obx(
+                          () => GridView.count(
+                            crossAxisCount: 2,
+                            shrinkWrap: true,
+                            physics: const ClampingScrollPhysics(),
+                            children: [
+                              ...controller.tasks
+                                  .map(
+                                    (element) => LongPressDraggable(
+                                      data: element,
+                                      onDragStarted: () =>
+                                          controller.deleteStatus(true),
+                                      onDraggableCanceled: (_, __) =>
+                                          controller.deleteStatus(false),
+                                      feedback: Opacity(
+                                        opacity: 0.4,
+                                        child: TaskCard(task: element),
+                                      ),
+                                      child: TaskCard(task: element),
+                                    ),
+                                  )
+                                  .toList(),
+                              AddCard()
+                            ],
+                          ),
+                        )
+                      ],
                     ),
-                    Obx(
-                      () => GridView.count(
-                        crossAxisCount: 2,
-                        shrinkWrap: true,
-                        physics: const ClampingScrollPhysics(),
-                        children: [
-                          ...controller.tasks
-                              .map(
-                                (element) => LongPressDraggable(
-                                  data: element,
-                                  onDragStarted: () =>
-                                      controller.deleteStatus(true),
-                                  onDraggableCanceled: (_, __) =>
-                                      controller.deleteStatus(false),
-                                  feedback: Opacity(
-                                    opacity: 0.4,
-                                    child: TaskCard(task: element),
-                                  ),
-                                  child: TaskCard(task: element),
-                                ),
-                              )
-                              .toList(),
-                          AddCard()
-                        ],
-                      ),
-                    )
-                  ],
+                  ),
                 ),
               ),
               ReportPage(tasks: controller.tasks),
-              SettingsPage(),
+              //SettingsPage(),
             ],
           ),
         ),
@@ -80,7 +85,8 @@ class HomePage extends GetView<HomeController> {
                     EasyLoading.showError('Please add a task first!');
                   }
                 },
-                child: Icon(controller.deleting.value ? Icons.delete : Icons.add),
+                child:
+                    Icon(controller.deleting.value ? Icons.delete : Icons.add),
               ),
             );
           },
@@ -95,7 +101,6 @@ class HomePage extends GetView<HomeController> {
           data: Theme.of(context).copyWith(
             splashColor: Colors.transparent,
             highlightColor: Colors.transparent,
-
           ),
           child: Obx(
             () => BottomNavigationBar(

@@ -65,16 +65,14 @@ class SettingsPage extends StatelessWidget {
                         SizedBox(
                           height: 8,
                         ),
-                        Obx(
-                          () => Text(
-                            controller.locale.value ? 'Persian' : 'English',
-                            style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.grey,
-                            ),
+                        Text(
+                          'English',
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.grey,
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ),
@@ -84,7 +82,7 @@ class SettingsPage extends StatelessWidget {
                       () => Switch(
                         value: controller.locale.value,
                         onChanged: (newValue) {
-                          controller.changeLanguage(newValue);
+                          //controller.changeLanguage(newValue);
                         },
                       ),
                     ),

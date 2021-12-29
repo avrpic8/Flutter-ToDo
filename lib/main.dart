@@ -3,6 +3,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:to_do/app/core/util/messages.dart';
+import 'package:to_do/app/data/models/settings.dart';
 import 'package:to_do/app/data/providers/task/settings_provider.dart';
 import 'package:to_do/app/data/services/storage/services.dart';
 import 'package:to_do/app/module/home/home_binding.dart';
@@ -23,15 +24,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final settings = Get.put(SettingsController(settingsProvider: SettingsProvider()));
-    var themeMode = settings.settingsProvider.readParameters('theme') ?? false;
-    var lan = settings.settingsProvider.readParameters('lan') ?? 'en';
-    print('themeMode ${themeMode}');
+    final setCtr = Get.put(SettingsController(settingsProvider: SettingsProvider()));
+
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       translations: Messages(),
-      locale: lan == 'en' ? Locale('en') : Locale('fa'),
+      //locale: lan == 'en' ? Locale('en') : Locale('fa'),
       home: const HomePage(),
       initialBinding: HomeBinding(),
       getPages: [
@@ -46,7 +45,7 @@ class MyApp extends StatelessWidget {
           binding: ReportBinding(),
         ),
       ],
-      theme: themeMode ? ThemeData.dark() : ThemeData.light(),
+      //theme: setCtr.settings.isDark ? ThemeData.dark() : ThemeData.light(),
       builder: EasyLoading.init(),
     );
   }
