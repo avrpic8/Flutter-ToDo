@@ -16,7 +16,7 @@ class StorageService extends GetxService {
       'settings',
       jsonEncode(
         AppSettings(
-            isDark: false, lan: "en", requirePass: false, splash: false),
+            isDark: false, lan: "en", requirePass: false, splash: true),
       ),
     );
     return this;
@@ -28,5 +28,9 @@ class StorageService extends GetxService {
 
   void write(String key, dynamic value) async {
     await _box.write(key, value);
+  }
+
+  void clearAllTodos(String key){
+    _box.remove(key);
   }
 }

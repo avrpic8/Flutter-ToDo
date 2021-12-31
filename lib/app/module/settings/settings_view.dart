@@ -28,7 +28,7 @@ class SettingsPage extends StatelessWidget {
               height: 20,
             ),
             Padding(
-              padding: EdgeInsets.fromLTRB(4.0.wp, 0, 0, 0),
+              padding: EdgeInsets.symmetric(horizontal: 4.0.wp),
               child: Text(
                 'Common',
                 style: TextStyle(
@@ -44,9 +44,16 @@ class SettingsPage extends StatelessWidget {
             SingleRowSetting(
               icons: Icons.language,
               titleSetting: 'Language',
-              subTitleSetting: 'Persian',
-              subTitleSettingNot: 'English',
-              condition: controller.locale.value,
+              subtitle: Obx(
+                () => Text(
+                  controller.locale.value ? 'Persian' : 'English',
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.grey,
+                  ),
+                ),
+              ),
               switchWidget: Obx(
                 () => Switch(
                   value: controller.locale.value,
@@ -55,25 +62,21 @@ class SettingsPage extends StatelessWidget {
                   },
                 ),
               ),
-            ),
-            SizedBox(
-              height: 5,
-            ),
-            Padding(
-              padding: EdgeInsets.fromLTRB(4.0.wp, 0, 4.0.wp, 0),
-              child: Divider(
-                thickness: 2,
-              ),
-            ),
-            SizedBox(
-              height: 5,
+              showDivider: false,
             ),
             SingleRowSetting(
               icons: Icons.color_lens,
               titleSetting: 'Theme',
-              subTitleSetting: 'Light',
-              subTitleSettingNot: 'Dark',
-              condition: controller.isDark.value,
+              subtitle: Obx(
+                () => Text(
+                  controller.isDark.value ? 'Dark' : 'Light',
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.grey,
+                  ),
+                ),
+              ),
               switchWidget: Obx(
                 () => Switch(
                   value: controller.isDark.value,
@@ -82,38 +85,33 @@ class SettingsPage extends StatelessWidget {
                   },
                 ),
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.fromLTRB(4.0.wp, 0, 4.0.wp, 0),
-              child: Divider(
-                thickness: 2,
-              ),
-            ),
-            SizedBox(
-              height: 5,
+              showDivider: false,
             ),
             SingleRowSetting(
               icons: Icons.animation,
               titleSetting: 'Splash',
-              subTitleSetting: 'Enable',
-              subTitleSettingNot: 'Disable',
+              subtitle: Obx(
+                () => Text(
+                  controller.showSplash.value ? 'Enabled' : 'Disabled',
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.grey,
+                  ),
+                ),
+              ),
               switchWidget: Obx(
                 () => Switch(
-                  value: controller.isDark.value,
+                  value: controller.showSplash.value,
                   onChanged: (newValue) {
-                    controller.changeTheme(newValue);
+                    controller.splashManage(newValue);
                   },
                 ),
               ),
-            ),
-            SizedBox(
-              height: 5,
-            ),
-            SizedBox(
-              height: 20,
+              showDivider: false,
             ),
             Padding(
-              padding: EdgeInsets.fromLTRB(4.0.wp, 0, 0, 0),
+              padding: EdgeInsets.symmetric(horizontal: 4.0.wp),
               child: Text(
                 'Security',
                 style: TextStyle(
@@ -126,59 +124,60 @@ class SettingsPage extends StatelessWidget {
             SizedBox(
               height: 20,
             ),
-            InkWell(
-              onTap: () {
-                Get.to(PasswordPage());
-              },
-              child: Padding(
-                padding: EdgeInsets.fromLTRB(4.0.wp, 0, 0, 0),
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.lock,
-                      size: 22,
-                      color: Colors.grey,
-                    ),
-                    SizedBox(
-                      width: 32,
-                    ),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Password',
-                            style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 8,
-                          ),
-                          Text(
-                            'Set your password',
-                            style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.grey,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(right: 4.0.wp),
-                      child: Icon(
-                        Icons.arrow_forward_ios_rounded,
-                        color: Colors.grey,
-                        size: 22,
-                      ),
-                    ),
-                  ],
+            SingleRowSetting(
+              icons: Icons.lock,
+              titleSetting: 'Password',
+              subtitle: Text(
+                'Set your password',
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.grey,
+                ),
+              ),
+              switchWidget: IconButton(
+                onPressed: () {
+                  Get.to(PasswordPage(), transition: Transition.rightToLeft);
+                },
+                icon: Icon(
+                  Icons.arrow_forward_ios_rounded,
+                  color: Colors.grey,
+                ),
+              ),
+              showDivider: false,
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 4.0.wp),
+              child: Text(
+                'Storage',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.blueAccent,
                 ),
               ),
             ),
+            SizedBox(
+              height: 20,
+            ),
+            SingleRowSetting(
+                icons: Icons.storage,
+                titleSetting: 'DataBase',
+                subtitle: Text(
+                  'Manage your all todos',
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.grey,
+                  ),
+                ),
+                switchWidget: TextButton(
+                  onPressed: () {
+                    controller.removeAllTodos();
+                  },
+                  child: Text('Clear all'),
+                ),
+                showDivider: false)
           ],
         ),
       ),

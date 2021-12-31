@@ -10,6 +10,7 @@ import 'package:to_do/app/module/home/home_view.dart';
 import 'package:to_do/app/module/report/report_binding.dart';
 import 'package:to_do/app/module/report/report_view.dart';
 import 'package:to_do/app/module/settings/settings_controller.dart';
+import 'app/module/splash/splash_view.dart';
 
 void main() async {
   /// init get storage before run app
@@ -31,8 +32,8 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       translations: Messages(),
       locale: setCtr.settings.lan == 'en' ? Locale('en') : Locale('fa'),
-      home: const HomePage(),
       initialBinding: HomeBinding(),
+      home:  setCtr.settings.splash ? SplashPage() : HomePage(),
       getPages: [
         GetPage(
           name: '/',
