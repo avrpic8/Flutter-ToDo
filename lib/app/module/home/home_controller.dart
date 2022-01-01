@@ -167,7 +167,7 @@ class HomeController extends GetxController {
     _timeBackPress = DateTime.now();
 
     if (isExitWarning) {
-      EasyLoading.showToast('Press back again to exit',
+      EasyLoading.showToast('press_back_again_to_exit'.tr,
           duration: Duration(seconds: 2),
           toastPosition: EasyLoadingToastPosition.center);
       return false;

@@ -33,23 +33,23 @@ class AddDialog extends StatelessWidget {
                     onPressed: () {
                       if (homeCtr.formKey.currentState!.validate()) {
                         if (homeCtr.task.value == null) {
-                          EasyLoading.showError('Please select task type');
+                          EasyLoading.showError('please_select_task_type'.tr);
                         } else {
                           var success = homeCtr.updateTask(
                               homeCtr.task.value!, homeCtr.editCtr.text);
                           if (success) {
-                            EasyLoading.showSuccess('Todo item add success');
+                            EasyLoading.showSuccess('todo_item_add_success'.tr);
                             Get.back();
                             homeCtr.changeTask(null);
                           } else {
-                            EasyLoading.showError('Todo iteme already exist');
+                            EasyLoading.showError('todo_item_already_exist'.tr);
                           }
                           homeCtr.editCtr.clear();
                         }
                       }
                     },
                     child: Text(
-                      'Done',
+                      'done'.tr,
                       style: TextStyle(
                         fontSize: 14.0.sp,
                       ),
@@ -61,7 +61,7 @@ class AddDialog extends StatelessWidget {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 5.0.wp),
               child: Text(
-                'New Task',
+                'new_task'.tr,
                 style:
                     TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0.sp),
               ),
@@ -78,7 +78,7 @@ class AddDialog extends StatelessWidget {
                 autofocus: true,
                 validator: (value) {
                   if (value == null || value.trim().isEmpty) {
-                    return 'Please enter your todo items';
+                    return 'please_enter_your_new_item'.tr;
                   }
                   return null;
                 },
@@ -87,7 +87,7 @@ class AddDialog extends StatelessWidget {
             Padding(
               padding: EdgeInsets.all(5.0.wp),
               child: Text(
-                'Add to',
+                'add_to'.tr,
                 style: TextStyle(fontSize: 14.0.sp, color: Colors.grey),
               ),
             ),

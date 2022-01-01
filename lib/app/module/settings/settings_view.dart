@@ -19,7 +19,7 @@ class SettingsPage extends StatelessWidget {
             Padding(
               padding: EdgeInsets.all(4.0.wp),
               child: Text(
-                'Settings',
+                'settings'.tr,
                 style:
                     TextStyle(fontSize: 24.0.sp, fontWeight: FontWeight.bold),
               ),
@@ -30,7 +30,7 @@ class SettingsPage extends StatelessWidget {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 4.0.wp),
               child: Text(
-                'Common',
+                'common'.tr,
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
@@ -43,10 +43,10 @@ class SettingsPage extends StatelessWidget {
             ),
             SingleRowSetting(
               icons: Icons.language,
-              titleSetting: 'Language',
+              titleSetting: 'language'.tr,
               subtitle: Obx(
                 () => Text(
-                  controller.locale.value ? 'Persian' : 'English',
+                  controller.locale.value ? 'persian'.tr : 'english'.tr,
                   style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
@@ -66,10 +66,10 @@ class SettingsPage extends StatelessWidget {
             ),
             SingleRowSetting(
               icons: Icons.color_lens,
-              titleSetting: 'Theme',
+              titleSetting: 'theme'.tr,
               subtitle: Obx(
                 () => Text(
-                  controller.isDark.value ? 'Dark' : 'Light',
+                  controller.isDark.value ? 'dark'.tr : 'light'.tr,
                   style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
@@ -89,10 +89,10 @@ class SettingsPage extends StatelessWidget {
             ),
             SingleRowSetting(
               icons: Icons.animation,
-              titleSetting: 'Splash',
+              titleSetting: 'splash'.tr,
               subtitle: Obx(
                 () => Text(
-                  controller.showSplash.value ? 'Enabled' : 'Disabled',
+                  controller.showSplash.value ? 'enabled'.tr : 'disabled'.tr,
                   style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
@@ -113,7 +113,7 @@ class SettingsPage extends StatelessWidget {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 4.0.wp),
               child: Text(
-                'Security',
+                'security'.tr,
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
@@ -126,9 +126,9 @@ class SettingsPage extends StatelessWidget {
             ),
             SingleRowSetting(
               icons: Icons.lock,
-              titleSetting: 'Password',
+              titleSetting: 'password'.tr,
               subtitle: Text(
-                'Set your password',
+                'set_your_password'.tr,
                 style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
@@ -149,7 +149,7 @@ class SettingsPage extends StatelessWidget {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 4.0.wp),
               child: Text(
-                'Storage',
+                'storage'.tr,
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
@@ -162,9 +162,9 @@ class SettingsPage extends StatelessWidget {
             ),
             SingleRowSetting(
                 icons: Icons.storage,
-                titleSetting: 'DataBase',
+                titleSetting: 'dataBase'.tr,
                 subtitle: Text(
-                  'Manage your all todos',
+                  'manage_your_all_todos'.tr,
                   style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
@@ -175,9 +175,10 @@ class SettingsPage extends StatelessWidget {
                   onPressed: () {
                     controller.removeAllTodos();
                   },
-                  child: Text('Clear all'),
+                  child: Text('clear_all'.tr),
                 ),
-                showDivider: false)
+                showDivider: false),
+            SizedBox(height: 10,)
           ],
         ),
       ),

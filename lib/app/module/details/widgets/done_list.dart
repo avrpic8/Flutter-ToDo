@@ -22,7 +22,7 @@ class DoneTodo extends StatelessWidget {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 12, vertical: 18),
                   child: Text(
-                    'Completed (${homeCtr.doneTodos.length})',
+                    'completed'.tr +' (${homeCtr.doneTodos.length})',
                     style: TextStyle(
                       fontSize: 14.0.sp,
                       color: Colors.grey,
@@ -37,8 +37,8 @@ class DoneTodo extends StatelessWidget {
                         onDismissed: (_) {
                           var index = homeCtr.deleteDoneTodo(element);
                           Get.snackbar(
-                            'Attention!',
-                            'Do you want to reverse this operation?',
+                            'attention'.tr,
+                            'do_you_want_to_reverse_this_operation'.tr,
                             mainButton: TextButton(
                               onPressed: () {
                                 homeCtr.backToDoneTodo(
@@ -47,7 +47,7 @@ class DoneTodo extends StatelessWidget {
                                 );
                                 Get.back();
                               },
-                              child: const Text('Undo', style: TextStyle(color: green),),
+                              child: Text('undo'.tr, style: TextStyle(color: green),),
                             ),
                             showProgressIndicator: true,
                             snackPosition: SnackPosition.BOTTOM,

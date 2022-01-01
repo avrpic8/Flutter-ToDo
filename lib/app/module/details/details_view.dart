@@ -77,7 +77,7 @@ class DetailPage extends StatelessWidget {
                           width: 3.0.wp,
                         ),
                         Text(
-                          '$totalTodo Task',
+                          '$totalTodo ' + 'tasks'.tr,
                           style: TextStyle(
                             fontSize: 12.0.sp,
                             color: Colors.grey,
@@ -131,9 +131,9 @@ class DetailPage extends StatelessWidget {
                         if (homeCtr.formKey.currentState!.validate()) {
                           var success = homeCtr.addTodo(homeCtr.editCtr.text);
                           if (success) {
-                            EasyLoading.showSuccess('Todo item add success!');
+                            EasyLoading.showSuccess('todo_item_add_success'.tr);
                           } else {
-                            EasyLoading.showError('Todo item already exist!');
+                            EasyLoading.showError('todo_item_already_exist'.tr);
                           }
                           homeCtr.editCtr.clear();
                         }
@@ -145,7 +145,7 @@ class DetailPage extends StatelessWidget {
                   ),
                   validator: (value) {
                     if (value == null || value.trim().isEmpty) {
-                      return 'Please enter your item';
+                      return 'please_enter_your_new_item'.tr;
                     }
                     return null;
                   },

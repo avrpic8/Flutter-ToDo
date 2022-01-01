@@ -19,7 +19,7 @@ class DoingList extends StatelessWidget {
                   width: 60.0.wp,
                 ),
                 Text(
-                  'Add Task',
+                  'empty_task'.tr,
                   style:
                       TextStyle(fontWeight: FontWeight.bold, fontSize: 10.0.wp),
                 )

@@ -77,8 +77,8 @@ class SettingsController extends GetxController {
     final homCtr = Get.find<HomeController>();
     if (homCtr.tasks.isEmpty) {
       Get.snackbar(
-        'Attention!',
-        'You dont have any todos for now.',
+        'attention'.tr,
+        'you_dont_have_any_todos_for_now'.tr,
         snackPosition: SnackPosition.TOP,
         backgroundColor: Colors.amber,
         colorText: Colors.black
@@ -86,25 +86,26 @@ class SettingsController extends GetxController {
     } else {
       Get.defaultDialog(
         radius: 5,
-        middleText: 'This operation cant reverse!',
+        title: 'alert'.tr,
+        middleText: 'this_operation_cant_reverse'.tr,
         confirm: TextButton(
             onPressed: () {
               homCtr.tasks.clear();
               Get.back();
               Get.snackbar(
-                  'Attention!',
-                  'All todos hase been removed.',
+                  'attention'.tr,
+                  'all_todos_hase_been_removed'.tr,
                   snackPosition: SnackPosition.TOP,
                   backgroundColor: Colors.amber,
                   colorText: Colors.black
               );
             },
-            child: Text('Ok')),
+            child: Text('ok'.tr)),
         cancel: TextButton(
             onPressed: () {
               Get.back();
             },
-            child: Text('Cancel')),
+            child: Text('cancel'.tr)),
       );
     }
     print('removed');

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:to_do/app/core/util/extentions.dart';
+import 'package:to_do/app/core/util/keys.dart';
 import 'package:to_do/app/core/values/colors.dart';
 import 'package:to_do/app/data/models/task.dart';
 import 'package:to_do/app/module/home/home_controller.dart';
@@ -12,7 +13,13 @@ import 'package:to_do/app/module/report/report_view.dart';
 import 'package:to_do/app/module/settings/settings_view.dart';
 
 class HomePage extends GetView<HomeController> {
-  const HomePage({Key? key}) : super(key: key);
+
+  final GlobalKey<NavigatorState> _homeKey = GlobalKey();
+  final GlobalKey<NavigatorState> _reportKey = GlobalKey();
+  final GlobalKey<NavigatorState> _settingsKey = GlobalKey();
+  final GlobalKey<NavigatorState> _aboutKey = GlobalKey();
+
+  HomePage({Key? key}) : super(key: key);
 
   //late DateTime? currentBackPressTime;
   @override
@@ -24,52 +31,48 @@ class HomePage extends GetView<HomeController> {
           () => IndexedStack(
             index: controller.tabIndex.value,
             children: [
-              Navigator(
-                onGenerateRoute: (settings) => MaterialPageRoute(
-                  builder: (context) => SafeArea(
-                    child: ListView(
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.all(4.0.wp),
-                          child: Text(
-                            'my_list'.tr,
-                            style: TextStyle(
-                                fontSize: 24.0.sp, fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                        Obx(
-                          () => GridView.count(
-                            crossAxisCount: 2,
-                            shrinkWrap: true,
-                            physics: const ClampingScrollPhysics(),
-                            children: [
-                              ...controller.tasks
-                                  .map(
-                                    (element) => LongPressDraggable(
-                                      data: element,
-                                      onDragStarted: () =>
-                                          controller.deleteStatus(true),
-                                      onDraggableCanceled: (_, __) =>
-                                          controller.deleteStatus(false),
-                                      feedback: Opacity(
-                                        opacity: 0.4,
-                                        child: TaskCard(task: element),
-                                      ),
-                                      child: TaskCard(task: element),
-                                    ),
-                                  )
-                                  .toList(),
-                              AddCard()
-                            ],
-                          ),
-                        )
-                      ],
+              _navigate(key: _homeKey, index: homeIndex, screen: SafeArea(
+                child: ListView(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.all(4.0.wp),
+                      child: Text(
+                        'my_list'.tr,
+                        style: TextStyle(
+                            fontSize: 24.0.sp, fontWeight: FontWeight.bold),
+                      ),
                     ),
-                  ),
+                    Obx(
+                          () => GridView.count(
+                        crossAxisCount: 2,
+                        shrinkWrap: true,
+                        physics: const ClampingScrollPhysics(),
+                        children: [
+                          ...controller.tasks
+                              .map(
+                                (element) => LongPressDraggable(
+                              data: element,
+                              onDragStarted: () =>
+                                  controller.deleteStatus(true),
+                              onDraggableCanceled: (_, __) =>
+                                  controller.deleteStatus(false),
+                              feedback: Opacity(
+                                opacity: 0.4,
+                                child: TaskCard(task: element),
+                              ),
+                              child: TaskCard(task: element),
+                            ),
+                          )
+                              .toList(),
+                          AddCard()
+                        ],
+                      ),
+                    )
+                  ],
                 ),
-              ),
-              ReportPage(tasks: controller.tasks),
-              SettingsPage(),
+              )),
+              _navigate(key: _reportKey, index: reportIndex, screen: ReportPage(tasks: controller.tasks)),
+              _navigate(key: _settingsKey, index: settingsIndex, screen: SettingsPage())
             ],
           ),
         ),
@@ -131,6 +134,15 @@ class HomePage extends GetView<HomeController> {
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _navigate({required GlobalKey key, required int index, required Widget screen}){
+    return key.currentState == null && controller.tabIndex.value!=index ? Container() : Navigator(
+      key: key,
+      onGenerateRoute: (settings) => MaterialPageRoute(
+        builder: (context) => Offstage(offstage: controller.tabIndex.value != index, child: screen,)
       ),
     );
   }
