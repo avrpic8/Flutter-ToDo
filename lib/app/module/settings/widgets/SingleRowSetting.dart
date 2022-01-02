@@ -21,6 +21,9 @@ class SingleRowSetting extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final txtTheme = Theme.of(context).textTheme;
+
     return InkWell(
       onTap: () {},
       child: Container(
@@ -44,10 +47,7 @@ class SingleRowSetting extends StatelessWidget {
                     children: [
                       Text(
                         titleSetting,
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style: txtTheme.bodyText2
                       ),
                       SizedBox(
                         height: 8,

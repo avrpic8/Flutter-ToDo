@@ -41,6 +41,7 @@ dependencies:
   dotted_border: ^2.0.0+2
   step_progress_indicator: ^1.0.1
   intl: ^0.17.0
+  google_fonts: ^2.1.0
 
 dev_dependencies:
   flutter_test:
@@ -86,11 +87,11 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
+  fonts:
+     - family: Iransanse
+       fonts:
+         - asset: assets/fonts/IRANSansX-Medium.ttf
+           weight: 700
   #         style: italic
   #   - family: Trajan Pro
   #     fonts:

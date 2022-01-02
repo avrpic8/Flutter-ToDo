@@ -14,8 +14,12 @@ class TaskCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final theme = Theme.of(context);
+    final txtTheme = Theme.of(context).textTheme;
     final color = HexColor.fromHex(task.color);
     var squareWidth = Get.width - 12.0.wp;
+
     return GestureDetector(
       onTap: () {
         //homeCtr.changeTask(task);
@@ -24,13 +28,13 @@ class TaskCard extends StatelessWidget {
       },
       child: Container(
         width: squareWidth / 2,
-        height: squareWidth / 2,
+        height: squareWidth/2,
         margin: EdgeInsets.all(3.0.wp),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: theme.cardColor  ,
           boxShadow: [
             BoxShadow(
-              color: Colors.grey[300]!,
+              color: theme.backgroundColor,
               blurRadius: 3,
               offset: const Offset(0, 3),
             )
@@ -41,7 +45,8 @@ class TaskCard extends StatelessWidget {
           children: [
             StepProgressIndicator(
               totalSteps: homeCtr.isTodoEmpty(task) ? 1 : task.todos!.length,
-              currentStep: homeCtr.isTodoEmpty(task) ? 0 : homeCtr.getDoneTodo(task),
+              currentStep:
+                  homeCtr.isTodoEmpty(task) ? 0 : homeCtr.getDoneTodo(task),
               size: 5,
               padding: 0,
               selectedGradientColor: LinearGradient(
@@ -69,18 +74,17 @@ class TaskCard extends StatelessWidget {
                 children: [
                   Text(
                     task.title,
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold, fontSize: 12.0.sp),
+                    style: txtTheme.subtitle1?.copyWith(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 12.0.sp,
+                    ),
                     overflow: TextOverflow.ellipsis,
                   ),
                   SizedBox(
                     height: 2.0.wp,
                   ),
-                  Text(
-                    '${task.todos?.length ?? 0} ' + 'tasks'.tr,
-                    style: const TextStyle(
-                        fontWeight: FontWeight.bold, color: Colors.grey),
-                  ),
+                  Text('${task.todos?.length ?? 0} ' + 'tasks'.tr,
+                      style: txtTheme.caption?.copyWith(fontSize: 13)),
                 ],
               ),
             )

@@ -16,7 +16,9 @@ class DetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeData = Theme.of(context);
+
+    final theme= Theme.of(context);
+    final txtTheme= Theme.of(context).textTheme;
     //var task = homeCtr.task.value;
     Task task = Get.arguments;
     var color = HexColor.fromHex(task.color);
@@ -55,8 +57,8 @@ class DetailPage extends StatelessWidget {
                     SizedBox(width: 3.0.wp),
                     Text(
                       task.title,
-                      style: themeData.textTheme.headline5!
-                          .copyWith(fontWeight: FontWeight.bold),
+                      style: txtTheme.headline6
+
                     )
                   ],
                 ),
@@ -142,6 +144,8 @@ class DetailPage extends StatelessWidget {
                         Icons.done,
                       ),
                     ),
+                    hintText: 'type_your_todo'.tr,
+                    hintStyle: txtTheme.caption?.copyWith(fontSize: 13)
                   ),
                   validator: (value) {
                     if (value == null || value.trim().isEmpty) {

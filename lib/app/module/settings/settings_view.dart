@@ -12,6 +12,9 @@ class SettingsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final txtTheme = Theme.of(context).textTheme;
+
     return Scaffold(
       body: SafeArea(
         child: ListView(
@@ -20,8 +23,7 @@ class SettingsPage extends StatelessWidget {
               padding: EdgeInsets.all(4.0.wp),
               child: Text(
                 'settings'.tr,
-                style:
-                    TextStyle(fontSize: 24.0.sp, fontWeight: FontWeight.bold),
+                style: txtTheme.headline6,
               ),
             ),
             SizedBox(
@@ -31,11 +33,7 @@ class SettingsPage extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 4.0.wp),
               child: Text(
                 'common'.tr,
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.blueAccent,
-                ),
+                style: txtTheme.subtitle1?.copyWith(fontSize: 16)
               ),
             ),
             SizedBox(
@@ -47,11 +45,7 @@ class SettingsPage extends StatelessWidget {
               subtitle: Obx(
                 () => Text(
                   controller.locale.value ? 'persian'.tr : 'english'.tr,
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.grey,
-                  ),
+                  style: txtTheme.caption?.copyWith(fontSize: 12)
                 ),
               ),
               switchWidget: Obx(
@@ -70,11 +64,7 @@ class SettingsPage extends StatelessWidget {
               subtitle: Obx(
                 () => Text(
                   controller.isDark.value ? 'dark'.tr : 'light'.tr,
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.grey,
-                  ),
+                  style: txtTheme.caption?.copyWith(fontSize: 12)
                 ),
               ),
               switchWidget: Obx(
@@ -93,11 +83,7 @@ class SettingsPage extends StatelessWidget {
               subtitle: Obx(
                 () => Text(
                   controller.showSplash.value ? 'enabled'.tr : 'disabled'.tr,
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.grey,
-                  ),
+                  style: txtTheme.caption?.copyWith(fontSize: 12)
                 ),
               ),
               switchWidget: Obx(
@@ -114,11 +100,7 @@ class SettingsPage extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 4.0.wp),
               child: Text(
                 'security'.tr,
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.blueAccent,
-                ),
+                style: txtTheme.subtitle1?.copyWith(fontSize: 16)
               ),
             ),
             SizedBox(
@@ -129,11 +111,7 @@ class SettingsPage extends StatelessWidget {
               titleSetting: 'password'.tr,
               subtitle: Text(
                 'set_your_password'.tr,
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.grey,
-                ),
+                style: txtTheme.caption?.copyWith(fontSize: 12)
               ),
               switchWidget: IconButton(
                 onPressed: () {
@@ -150,11 +128,7 @@ class SettingsPage extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 4.0.wp),
               child: Text(
                 'storage'.tr,
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.blueAccent,
-                ),
+                style: txtTheme.subtitle1?.copyWith(fontSize: 16)
               ),
             ),
             SizedBox(
@@ -165,17 +139,13 @@ class SettingsPage extends StatelessWidget {
                 titleSetting: 'dataBase'.tr,
                 subtitle: Text(
                   'manage_your_all_todos'.tr,
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.grey,
-                  ),
+                  style: txtTheme.caption?.copyWith(fontSize: 12)
                 ),
                 switchWidget: TextButton(
                   onPressed: () {
                     controller.removeAllTodos();
                   },
-                  child: Text('clear_all'.tr),
+                  child: Text('clear_all'.tr, style: txtTheme.subtitle1?.copyWith(fontSize: 13),),
                 ),
                 showDivider: false),
             SizedBox(height: 10,)

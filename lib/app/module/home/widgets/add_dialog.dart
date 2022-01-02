@@ -11,6 +11,10 @@ class AddDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final theme = Theme.of(context);
+    final txtTheme = Theme.of(context).textTheme;
+
     return Scaffold(
       body: Form(
         key: homeCtr.formKey,
@@ -50,9 +54,7 @@ class AddDialog extends StatelessWidget {
                     },
                     child: Text(
                       'done'.tr,
-                      style: TextStyle(
-                        fontSize: 14.0.sp,
-                      ),
+                      style: txtTheme.subtitle1
                     ),
                   )
                 ],
@@ -62,10 +64,10 @@ class AddDialog extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 5.0.wp),
               child: Text(
                 'new_task'.tr,
-                style:
-                    TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0.sp),
+                style: txtTheme.headline6
               ),
             ),
+            SizedBox(height: 10,),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 5.0.wp),
               child: TextFormField(
@@ -74,6 +76,8 @@ class AddDialog extends StatelessWidget {
                   focusedBorder: UnderlineInputBorder(
                     borderSide: BorderSide(color: Colors.grey.shade400),
                   ),
+                  hintText: 'type_your_todo'.tr,
+                  hintStyle: txtTheme.caption?.copyWith(fontSize: 13),
                 ),
                 autofocus: true,
                 validator: (value) {
@@ -88,7 +92,7 @@ class AddDialog extends StatelessWidget {
               padding: EdgeInsets.all(5.0.wp),
               child: Text(
                 'add_to'.tr,
-                style: TextStyle(fontSize: 14.0.sp, color: Colors.grey),
+                style: txtTheme.bodyText2,
               ),
             ),
             ...homeCtr.tasks.map(
@@ -111,9 +115,7 @@ class AddDialog extends StatelessWidget {
                             SizedBox(width: 3.0.wp),
                             Text(
                               element.title,
-                              style: TextStyle(
-                                  fontSize: 12.0.sp,
-                                  fontWeight: FontWeight.bold),
+                              style: txtTheme.caption?.copyWith(fontSize: 14)
                             ),
                           ],
                         ),

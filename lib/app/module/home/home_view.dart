@@ -21,9 +21,11 @@ class HomePage extends GetView<HomeController> {
 
   HomePage({Key? key}) : super(key: key);
 
-  //late DateTime? currentBackPressTime;
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final txtTheme = Theme.of(context).textTheme;
+
     return WillPopScope(
       onWillPop: () => controller.onWillPop(),
       child: Scaffold(
@@ -38,8 +40,7 @@ class HomePage extends GetView<HomeController> {
                       padding: EdgeInsets.all(4.0.wp),
                       child: Text(
                         'my_list'.tr,
-                        style: TextStyle(
-                            fontSize: 24.0.sp, fontWeight: FontWeight.bold),
+                        style: txtTheme.headline6,
                       ),
                     ),
                     Obx(
@@ -64,7 +65,7 @@ class HomePage extends GetView<HomeController> {
                             ),
                           )
                               .toList(),
-                          AddCard()
+                          AddCard(),
                         ],
                       ),
                     )
@@ -80,7 +81,7 @@ class HomePage extends GetView<HomeController> {
           builder: (_, __, ___) {
             return Obx(
               () => FloatingActionButton(
-                backgroundColor: controller.deleting.value ? Colors.red : blue,
+                backgroundColor: controller.deleting.value ? Colors.red : theme.primaryColor,
                 onPressed: () {
                   if (controller.tasks.isNotEmpty) {
                     Get.to(() => AddDialog(), transition: Transition.downToUp);
@@ -101,9 +102,9 @@ class HomePage extends GetView<HomeController> {
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         bottomNavigationBar: Theme(
-          data: Theme.of(context).copyWith(
-            splashColor: Colors.transparent,
-            highlightColor: Colors.transparent,
+          data: theme.copyWith(
+            //splashColor: Colors.transparent,
+            //highlightColor: Colors.transparent,
           ),
           child: Obx(
             () => BottomNavigationBar(

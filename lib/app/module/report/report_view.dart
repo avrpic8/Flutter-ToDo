@@ -16,6 +16,9 @@ class ReportPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
+    final theme = Theme.of(context);
+    final txtTheme = Theme.of(context).textTheme;
+
     controller.initTask(tasks);
     var createdTasks = controller.getTotalTask();
     var completeTasks = controller.getTotalDoneTask();
@@ -30,10 +33,7 @@ class ReportPage extends StatelessWidget {
                   padding: EdgeInsets.all(4.0.wp),
                   child: Text(
                     'my_report'.tr,
-                    style: TextStyle(
-                      fontSize: 24.0.sp,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: txtTheme.headline6
                   ),
                 ),
                 Padding(
@@ -42,10 +42,7 @@ class ReportPage extends StatelessWidget {
                     DateFormat.yMMMMd().format(
                       DateTime.now(),
                     ),
-                    style: TextStyle(
-                      fontSize: 14.0.sp,
-                      color: Colors.grey,
-                    ),
+                    style: txtTheme.caption?.copyWith(fontSize: 14, color: Colors.purple)
                   ),
                 ),
                 Padding(
@@ -62,15 +59,15 @@ class ReportPage extends StatelessWidget {
                     children: [
                       Expanded(
                         child:
-                            _buildStatus(Colors.green, liveTasks, 'live_task'.tr),
+                            _buildStatus(Colors.green, liveTasks, 'live_task'.tr, txtTheme),
                       ),
                       Expanded(
                         child: _buildStatus(
-                            Colors.orange, completeTasks, 'complete_task'.tr),
+                            Colors.orange, completeTasks, 'complete_task'.tr, txtTheme),
                       ),
                       Expanded(
                         child:
-                            _buildStatus(Colors.blue, createdTasks, 'create_task'.tr),
+                            _buildStatus(Colors.blue, createdTasks, 'create_task'.tr, txtTheme),
                       ),
                     ],
                   ),
@@ -125,7 +122,7 @@ class ReportPage extends StatelessWidget {
 
   }
 
-  Row _buildStatus(Color color, int amount, String text) {
+  Row _buildStatus(Color color, int amount, String text, TextTheme theme) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -148,20 +145,14 @@ class ReportPage extends StatelessWidget {
           children: [
             Text(
               '$amount',
-              style: const TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ),
+              style: theme.caption?.copyWith(fontSize: 14, fontWeight: FontWeight.bold)
             ),
             SizedBox(
               height: 1.0.wp,
             ),
             Text(
               text,
-              style: const TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.grey),
+              style: theme.caption?.copyWith(fontSize: 14 ,fontWeight: FontWeight.bold)
             ),
           ],
         )

@@ -3,6 +3,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:to_do/app/core/util/messages.dart';
+import 'package:to_do/app/core/values/app_theme.dart';
 import 'package:to_do/app/data/providers/task/settings_provider.dart';
 import 'package:to_do/app/data/services/storage/services.dart';
 import 'package:to_do/app/module/home/home_binding.dart';
@@ -10,6 +11,7 @@ import 'package:to_do/app/module/home/home_view.dart';
 import 'package:to_do/app/module/report/report_binding.dart';
 import 'package:to_do/app/module/report/report_view.dart';
 import 'package:to_do/app/module/settings/settings_controller.dart';
+
 import 'app/module/splash/splash_view.dart';
 
 void main() async {
@@ -33,7 +35,7 @@ class MyApp extends StatelessWidget {
       translations: Messages(),
       locale: setCtr.settings.lan == 'en' ? Locale('en') : Locale('fa'),
       initialBinding: HomeBinding(),
-      home:  setCtr.settings.splash ? SplashPage() : HomePage(),
+      home: setCtr.settings.splash ? SplashPage() : HomePage(),
       getPages: [
         GetPage(
           name: '/',
@@ -46,7 +48,9 @@ class MyApp extends StatelessWidget {
           binding: ReportBinding(),
         ),
       ],
-      theme: setCtr.settings.isDark ? ThemeData.dark() : ThemeData.light(),
+      theme: setCtr.settings.isDark
+          ? MyAppTheme.dark().getTheme(setCtr.settings.lan)
+          : MyAppTheme.light().getTheme(setCtr.settings.lan),
       builder: EasyLoading.init(),
     );
   }

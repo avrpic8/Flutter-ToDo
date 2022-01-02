@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:to_do/app/core/values/app_theme.dart';
 import 'package:to_do/app/data/models/settings.dart';
 import 'package:to_do/app/data/providers/task/settings_provider.dart';
 import 'package:to_do/app/data/services/storage/services.dart';
@@ -49,9 +50,9 @@ class SettingsController extends GetxController {
     settings.isDark = newValue;
     saveParametersSettings(settings);
     if (isDark.value) {
-      Get.changeTheme(ThemeData.dark());
+      Get.changeTheme(MyAppTheme.dark().getTheme(settings.lan));
     } else {
-      Get.changeTheme(ThemeData.light());
+      Get.changeTheme(MyAppTheme.light().getTheme(settings.lan));
     }
   }
 
@@ -63,6 +64,11 @@ class SettingsController extends GetxController {
     } else {
       Get.updateLocale(Locale('en'));
       settings.lan = 'en';
+    }
+    if (isDark.value) {
+      Get.changeTheme(MyAppTheme.dark().getTheme(settings.lan));
+    } else {
+      Get.changeTheme(MyAppTheme.light().getTheme(settings.lan));
     }
     saveParametersSettings(settings);
   }

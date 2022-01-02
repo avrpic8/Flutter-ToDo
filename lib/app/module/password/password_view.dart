@@ -6,6 +6,10 @@ class PasswordPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final theme = Theme.of(context);
+    final txtTheme = Theme.of(context).textTheme;
+
     return Scaffold(
       body: SafeArea(
         child: ListView(
@@ -14,8 +18,7 @@ class PasswordPage extends StatelessWidget {
               padding: EdgeInsets.all(4.0.wp),
               child: Text(
                 'Password',
-                style:
-                TextStyle(fontSize: 24.0.sp, fontWeight: FontWeight.bold),
+                style: txtTheme.headline6,
               ),
             ),
           ],

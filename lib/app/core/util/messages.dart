@@ -56,6 +56,7 @@ class Messages extends Translations {
           'new_task': 'New Task',
           'add_to': 'Add to',
           'press_back_again_to_exit': 'Press back again to exit',
+          'type_your_todo': 'Type your todo'
         },
         'fa': {
           'my_list': 'لیست من',
@@ -110,6 +111,7 @@ class Messages extends Translations {
           'new_task': 'برنامه جدید',
           'add_to': 'به کدام دسته اضافه شود',
           'press_back_again_to_exit': 'کلید بازگشت را یک باره دیگر فشار دهید',
+          'type_your_todo': 'برنامه خود را بنویسید'
         }
   };
 }
