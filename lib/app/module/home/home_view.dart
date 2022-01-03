@@ -33,7 +33,7 @@ class HomePage extends GetView<HomeController> {
           () => IndexedStack(
             index: controller.tabIndex.value,
             children: [
-              _navigate(key: _homeKey, index: homeIndex, screen: SafeArea(
+              _navigate(index: homeIndex, screen: SafeArea(
                 child: ListView(
                   children: [
                     Padding(
@@ -81,7 +81,7 @@ class HomePage extends GetView<HomeController> {
           builder: (_, __, ___) {
             return Obx(
               () => FloatingActionButton(
-                backgroundColor: controller.deleting.value ? Colors.red : theme.primaryColor,
+                backgroundColor: controller.deleting.value ? Colors.red : theme.colorScheme.secondary,
                 onPressed: () {
                   if (controller.tasks.isNotEmpty) {
                     Get.to(() => AddDialog(), transition: Transition.downToUp);
@@ -105,6 +105,7 @@ class HomePage extends GetView<HomeController> {
           data: theme.copyWith(
             //splashColor: Colors.transparent,
             //highlightColor: Colors.transparent,
+
           ),
           child: Obx(
             () => BottomNavigationBar(
@@ -139,8 +140,8 @@ class HomePage extends GetView<HomeController> {
     );
   }
 
-  Widget _navigate({required GlobalKey key, required int index, required Widget screen}){
-    return key.currentState == null && controller.tabIndex.value!=index ? Container() : Navigator(
+  Widget _navigate({GlobalKey? key, required int index, required Widget screen}){
+    return key?.currentState == null && controller.tabIndex.value!=index ? Container() : Navigator(
       key: key,
       onGenerateRoute: (settings) => MaterialPageRoute(
         builder: (context) => Offstage(offstage: controller.tabIndex.value != index, child: screen,)

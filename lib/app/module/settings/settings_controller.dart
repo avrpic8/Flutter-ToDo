@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:to_do/app/core/values/app_theme.dart';
+import 'package:to_do/app/core/values/app_theme2.dart';
 import 'package:to_do/app/data/models/settings.dart';
 import 'package:to_do/app/data/providers/task/settings_provider.dart';
 import 'package:to_do/app/data/services/storage/services.dart';
@@ -50,9 +50,9 @@ class SettingsController extends GetxController {
     settings.isDark = newValue;
     saveParametersSettings(settings);
     if (isDark.value) {
-      Get.changeTheme(MyAppTheme.dark().getTheme(settings.lan));
+      Get.changeTheme(MyAppTheme.dark().getDarkTheme(settings.lan));
     } else {
-      Get.changeTheme(MyAppTheme.light().getTheme(settings.lan));
+      Get.changeTheme(MyAppTheme.light().getLightTheme(settings.lan));
     }
   }
 
@@ -66,9 +66,9 @@ class SettingsController extends GetxController {
       settings.lan = 'en';
     }
     if (isDark.value) {
-      Get.changeTheme(MyAppTheme.dark().getTheme(settings.lan));
+      Get.changeTheme(MyAppTheme.dark().getDarkTheme(settings.lan));
     } else {
-      Get.changeTheme(MyAppTheme.light().getTheme(settings.lan));
+      Get.changeTheme(MyAppTheme.light().getLightTheme(settings.lan));
     }
     saveParametersSettings(settings);
   }
@@ -80,14 +80,24 @@ class SettingsController extends GetxController {
   }
 
   void removeAllTodos() {
+    final Color backgroundColor;
+    final Color textColor;
+    if(isDark.value){
+      backgroundColor = Colors.amber;
+      textColor = Colors.black;
+    }else{
+      backgroundColor = Colors.lightBlue;
+      textColor = Colors.white;
+    }
+
     final homCtr = Get.find<HomeController>();
     if (homCtr.tasks.isEmpty) {
       Get.snackbar(
         'attention'.tr,
         'you_dont_have_any_todos_for_now'.tr,
         snackPosition: SnackPosition.TOP,
-        backgroundColor: Colors.amber,
-        colorText: Colors.black
+        backgroundColor: backgroundColor,
+        colorText: textColor
       );
     } else {
       Get.defaultDialog(

@@ -15,7 +15,8 @@ class AddCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context).textTheme;
+    final txtTheme = Theme.of(context).textTheme;
+    final theme = Theme.of(context);
     final icons = getIcons();
     var squaeWidth = Get.width - 12.0.wp;
     return Container(
@@ -28,7 +29,7 @@ class AddCard extends StatelessWidget {
             titlePadding: EdgeInsets.symmetric(vertical: 5.0.wp),
             radius: 5,
             title: 'task_type'.tr,
-            titleStyle: theme.headline6,
+            titleStyle: txtTheme.headline6,
             content: Form(
               key: homeCtr.formKey,
               child: Column(
@@ -77,7 +78,7 @@ class AddCard extends StatelessWidget {
                   ),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                        primary: blue,
+                        primary: theme.colorScheme.secondary,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20)),
                         minimumSize: const Size(150, 40)),
@@ -99,7 +100,7 @@ class AddCard extends StatelessWidget {
                             : EasyLoading.showError('duplicated'.tr);
                       }
                     },
-                    child: Text('confirm'.tr, style: theme.bodyText2?.copyWith(color: Colors.white),),
+                    child: Text('confirm'.tr, style: txtTheme.bodyText2?.copyWith(color: Colors.white),),
                   ),
                 ],
               ),

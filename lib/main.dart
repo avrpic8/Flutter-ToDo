@@ -3,7 +3,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:to_do/app/core/util/messages.dart';
-import 'package:to_do/app/core/values/app_theme.dart';
+import 'package:to_do/app/core/values/app_theme2.dart';
 import 'package:to_do/app/data/providers/task/settings_provider.dart';
 import 'package:to_do/app/data/services/storage/services.dart';
 import 'package:to_do/app/module/home/home_binding.dart';
@@ -49,8 +49,8 @@ class MyApp extends StatelessWidget {
         ),
       ],
       theme: setCtr.settings.isDark
-          ? MyAppTheme.dark().getTheme(setCtr.settings.lan)
-          : MyAppTheme.light().getTheme(setCtr.settings.lan),
+          ? MyAppTheme.dark().getDarkTheme(setCtr.settings.lan)
+          : MyAppTheme.light().getLightTheme(setCtr.settings.lan),
       builder: EasyLoading.init(),
     );
   }

@@ -9,10 +9,13 @@ class MyAppTheme {
   final Color surfaceColor;
   final Color backGroundColor;
   final Color appBarColor;
+  final Color bottomBarColor;
   final Brightness brightness;
   final shadow;
   final cardColor;
   final settingCaptionColor;
+  final accentColor;
+
 
   MyAppTheme.dark()
       : primaryTextColor = Colors.white60,
@@ -21,6 +24,8 @@ class MyAppTheme {
         surfaceColor = Color(0x0dffffff),
         backGroundColor = Color.fromARGB(255, 30, 30, 30),
         appBarColor = Colors.black,
+        accentColor = Color.fromARGB(255, 30, 30, 30),
+        bottomBarColor = Color.fromARGB(255, 30, 30, 30),
         brightness = Brightness.dark,
         shadow = Color(0x0dffffff),
         cardColor = Color(0x0dffffff),
@@ -35,6 +40,8 @@ class MyAppTheme {
         surfaceColor = Color(0x0d000000),
         backGroundColor = Colors.white,
         appBarColor = Color.fromARGB(255, 235, 235, 235),
+        accentColor =  Colors.white30,
+        bottomBarColor = Colors.lightBlue,
         brightness = Brightness.light,
         shadow = Color(0x0d000000),
         cardColor = Colors.white30,
@@ -74,40 +81,40 @@ class MyAppTheme {
   }
 
   TextTheme get enPrimaryFont => GoogleFonts.latoTextTheme(
-        TextTheme(
-          bodyText2: TextStyle(fontSize: 15, color: primaryTextColor),
-          bodyText1: TextStyle(fontSize: 13, color: secondryTextColor),
-          headline6:
-              TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: primaryTextColor),
-          subtitle1: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-            color: primaryColor,
-          ),
-          caption: TextStyle(color: primaryTextColor)
+    TextTheme(
+        bodyText2: TextStyle(fontSize: 15, color: primaryTextColor),
+        bodyText1: TextStyle(fontSize: 13, color: secondryTextColor),
+        headline6:
+        TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: primaryTextColor),
+        subtitle1: TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.bold,
+          color: primaryColor,
         ),
-      );
+        caption: TextStyle(color: primaryTextColor)
+    ),
+  );
 
   TextTheme get faPrimaryFont => TextTheme(
-        bodyText2: TextStyle(
-            fontSize: 15, color: primaryTextColor, fontFamily: FA_PRIMARY_FONT),
-        bodyText1: TextStyle(
-            fontSize: 12,
-            color: secondryTextColor,
-            fontFamily: FA_PRIMARY_FONT),
-        caption: TextStyle(
-          fontSize: 12,
-          fontFamily: FA_PRIMARY_FONT,
-        ),
-        headline6: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.w400,
-            color: primaryTextColor,
-            fontFamily: FA_PRIMARY_FONT),
-        subtitle1: TextStyle(
-            fontSize: 14,
-            fontWeight: FontWeight.bold,
-            color: primaryColor,
-            fontFamily: FA_PRIMARY_FONT),
-      );
+    bodyText2: TextStyle(
+        fontSize: 15, color: primaryTextColor, fontFamily: FA_PRIMARY_FONT),
+    bodyText1: TextStyle(
+        fontSize: 12,
+        color: secondryTextColor,
+        fontFamily: FA_PRIMARY_FONT),
+    caption: TextStyle(
+      fontSize: 12,
+      fontFamily: FA_PRIMARY_FONT,
+    ),
+    headline6: TextStyle(
+        fontSize: 20,
+        fontWeight: FontWeight.w400,
+        color: primaryTextColor,
+        fontFamily: FA_PRIMARY_FONT),
+    subtitle1: TextStyle(
+        fontSize: 14,
+        fontWeight: FontWeight.bold,
+        color: primaryColor,
+        fontFamily: FA_PRIMARY_FONT),
+  );
 }

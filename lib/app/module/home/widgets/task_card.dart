@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 import 'package:to_do/app/core/util/extentions.dart';
+import 'package:to_do/app/core/values/app_theme2.dart';
 import 'package:to_do/app/data/models/task.dart';
 import 'package:to_do/app/module/details/details_view.dart';
 import 'package:to_do/app/module/home/home_controller.dart';
@@ -31,12 +32,12 @@ class TaskCard extends StatelessWidget {
         height: squareWidth/2,
         margin: EdgeInsets.all(3.0.wp),
         decoration: BoxDecoration(
-          color: theme.cardColor  ,
+          color: theme.colorScheme.surface ,
+          borderRadius: BorderRadius.all(Radius.circular(3)),
           boxShadow: [
             BoxShadow(
-              color: theme.backgroundColor,
-              blurRadius: 3,
-              offset: const Offset(0, 3),
+              blurRadius: 1,
+              color: Colors.grey.withOpacity(0.6)
             )
           ],
         ),
@@ -54,10 +55,10 @@ class TaskCard extends StatelessWidget {
                 end: Alignment.bottomRight,
                 colors: [color.withOpacity(0.5), color],
               ),
-              unselectedGradientColor: const LinearGradient(
+              unselectedGradientColor: LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
-                colors: [Colors.white, Colors.white],
+                colors: [theme.colorScheme.background, theme.colorScheme.background],
               ),
             ),
             Padding(
