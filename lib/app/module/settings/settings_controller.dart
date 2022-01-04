@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:to_do/app/core/values/app_theme2.dart';
+import 'package:to_do/app/core/util/app_theme.dart';
 import 'package:to_do/app/data/models/settings.dart';
 import 'package:to_do/app/data/providers/task/settings_provider.dart';
 import 'package:to_do/app/data/services/storage/services.dart';

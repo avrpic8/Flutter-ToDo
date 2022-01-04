@@ -155,6 +155,7 @@ class DetailPage extends StatelessWidget {
                   },
                 ),
               ),
+              SizedBox(height:60,),
               DoingList(),
               DoneTodo(),
             ],

@@ -56,7 +56,9 @@ class Messages extends Translations {
           'new_task': 'New Task',
           'add_to': 'Add to',
           'press_back_again_to_exit': 'Press back again to exit',
-          'type_your_todo': 'Type your todo'
+          'type_your_todo': 'Type your todo',
+          'please_add_a_task_first':'Please add a task first!',
+          'delete_success':'Delete Success'
         },
         'fa': {
           'my_list': 'لیست من',
@@ -111,7 +113,9 @@ class Messages extends Translations {
           'new_task': 'برنامه جدید',
           'add_to': 'به کدام دسته اضافه شود',
           'press_back_again_to_exit': 'کلید بازگشت را یک باره دیگر فشار دهید',
-          'type_your_todo': 'برنامه خود را بنویسید'
+          'type_your_todo': 'برنامه خود را بنویسید',
+          'please_add_a_task_first':'ابتدا یک گروه ایجاد کنید!',
+          'delete_success':'گروه موردنظر پاک شد!'
         }
   };
 }

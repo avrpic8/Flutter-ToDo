@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:to_do/app/core/util/extentions.dart';
-import 'package:to_do/app/core/util/keys.dart';
+import 'package:to_do/app/core/util/constants.dart';
 import 'package:to_do/app/core/values/colors.dart';
 import 'package:to_do/app/data/models/task.dart';
 import 'package:to_do/app/module/home/home_controller.dart';
@@ -86,7 +86,7 @@ class HomePage extends GetView<HomeController> {
                   if (controller.tasks.isNotEmpty) {
                     Get.to(() => AddDialog(), transition: Transition.downToUp);
                   } else {
-                    EasyLoading.showError('Please add a task first!');
+                    EasyLoading.showError('please_add_a_task_first'.tr);
                   }
                 },
                 child:
@@ -97,7 +97,7 @@ class HomePage extends GetView<HomeController> {
           onAccept: (Task task) {
             controller.deleteTask(task);
             controller.deleteStatus(false);
-            EasyLoading.showSuccess('Delete Success');
+            EasyLoading.showSuccess('delete_success'.tr);
           },
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,

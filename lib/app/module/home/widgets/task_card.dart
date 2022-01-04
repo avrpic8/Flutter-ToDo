@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 import 'package:to_do/app/core/util/extentions.dart';
-import 'package:to_do/app/core/values/app_theme2.dart';
+import 'package:to_do/app/core/util/app_theme.dart';
 import 'package:to_do/app/data/models/task.dart';
 import 'package:to_do/app/module/details/details_view.dart';
 import 'package:to_do/app/module/home/home_controller.dart';

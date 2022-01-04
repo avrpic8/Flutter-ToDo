@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:to_do/app/core/util/keys.dart';
+import 'package:to_do/app/core/util/constants.dart';
 import 'package:to_do/app/data/models/settings.dart';
 
 class StorageService extends GetxService {
@@ -13,7 +13,7 @@ class StorageService extends GetxService {
     //await _box.write(taskKey, []);
     await _box.writeIfNull(taskKey, []);
     await _box.writeIfNull(
-      'settings',
+      appSettingsKey,
       jsonEncode(
         AppSettings(
             isDark: false, lan: "en", requirePass: false, splash: true),

@@ -9,6 +9,10 @@ class DoingList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final theme = Theme.of(context);
+    final txtTheme = Theme.of(context).textTheme;
+
     return Obx(
       () => homeCtr.doingTodos.isEmpty && homeCtr.doneTodos.isEmpty
           ? Column(
@@ -18,11 +22,7 @@ class DoingList extends StatelessWidget {
                   fit: BoxFit.cover,
                   width: 60.0.wp,
                 ),
-                Text(
-                  'empty_task'.tr,
-                  style:
-                      TextStyle(fontWeight: FontWeight.bold, fontSize: 10.0.wp),
-                )
+                Text('empty_task'.tr, style: txtTheme.bodyText2),
               ],
             )
           : ListView(
