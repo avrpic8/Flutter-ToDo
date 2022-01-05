@@ -30,79 +30,87 @@ class AddCard extends StatelessWidget {
             radius: 5,
             title: 'task_type'.tr,
             titleStyle: txtTheme.headline6,
-            content: Form(
-              key: homeCtr.formKey,
-              child: Column(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 3.0.wp),
-                    child: TextFormField(
-                      controller: homeCtr.editCtr,
-                      decoration: InputDecoration(
-                          border: OutlineInputBorder(),
-                          labelText: 'title_task'.tr),
-                      validator: (value) {
-                        if (value == null || value.trim().isEmpty) {
-                          return 'error_task_title'.tr;
-                        }
-                        return null;
-                      },
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(vertical: 5.0.wp),
-                    child: Wrap(
-                      spacing: 2,
-                      children: icons
-                          .map(
-                            (e) => Obx(
-                              () {
-                                final index = icons.indexOf(e);
-                                return ChoiceChip(
-                                  selectedColor: Colors.grey[200],
-                                  pressElevation: 0,
-                                  backgroundColor: Colors.white,
-                                  label: e,
-                                  selected:
-                                      homeCtr.chipIndex.value == index,
-                                  onSelected: (bool selected) {
-                                    homeCtr.chipIndex.value =
-                                        selected ? index : 0;
-                                  },
-                                );
-                              },
+            content: Container(
+              child: Form(
+                key: homeCtr.formKey,
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 3.0.wp),
+                      child: TextFormField(
+                        controller: homeCtr.editCtr,
+                        style: TextStyle(color: txtTheme.bodyText2?.color,fontWeight: FontWeight.normal),
+                        decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: theme.colorScheme.primary)
                             ),
-                          )
-                          .toList(),
+                            labelText: 'title_task'.tr,
+                            labelStyle: TextStyle(color: theme.colorScheme.primary)
+                        ),
+                        validator: (value) {
+                          if (value == null || value.trim().isEmpty) {
+                            return 'error_task_title'.tr;
+                          }
+                          return null;
+                        },
+                      ),
                     ),
-                  ),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        primary: theme.colorScheme.secondary,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20)),
-                        minimumSize: const Size(150, 40)),
-                    onPressed: () {
-                      if (homeCtr.formKey.currentState!.validate()) {
-                        int icon = icons[homeCtr.chipIndex.value]
-                            .icon!
-                            .codePoint;
-                        String color = icons[homeCtr.chipIndex.value]
-                            .color!
-                            .toHex();
-                        var task = Task(
-                            title: homeCtr.editCtr.text,
-                            icon: icon,
-                            color: color);
-                        Get.back();
-                        homeCtr.addTask(task)
-                            ? EasyLoading.showSuccess('create_success'.tr)
-                            : EasyLoading.showError('duplicated'.tr);
-                      }
-                    },
-                    child: Text('confirm'.tr, style: txtTheme.bodyText2?.copyWith(color: Colors.white),),
-                  ),
-                ],
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: 5.0.wp),
+                      child: Wrap(
+                        spacing: 2,
+                        children: icons
+                            .map(
+                              (e) => Obx(
+                                () {
+                                  final index = icons.indexOf(e);
+                                  return ChoiceChip(
+                                    selectedColor: Colors.grey[200],
+                                    pressElevation: 0,
+                                    backgroundColor: Colors.white,
+                                    label: e,
+                                    selected:
+                                        homeCtr.chipIndex.value == index,
+                                    onSelected: (bool selected) {
+                                      homeCtr.chipIndex.value =
+                                          selected ? index : 0;
+                                    },
+                                  );
+                                },
+                              ),
+                            )
+                            .toList(),
+                      ),
+                    ),
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          primary: theme.colorScheme.secondary,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20)),
+                          minimumSize: const Size(150, 40)),
+                      onPressed: () {
+                        if (homeCtr.formKey.currentState!.validate()) {
+                          int icon = icons[homeCtr.chipIndex.value]
+                              .icon!
+                              .codePoint;
+                          String color = icons[homeCtr.chipIndex.value]
+                              .color!
+                              .toHex();
+                          var task = Task(
+                              title: homeCtr.editCtr.text,
+                              icon: icon,
+                              color: color);
+                          Get.back();
+                          homeCtr.addTask(task)
+                              ? EasyLoading.showSuccess('create_success'.tr)
+                              : EasyLoading.showError('duplicated'.tr);
+                        }
+                      },
+                      child: Text('confirm'.tr, style: txtTheme.bodyText2?.copyWith(color: Colors.white),),
+                    ),
+                  ],
+                ),
               ),
             ),
           );

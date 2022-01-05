@@ -44,7 +44,7 @@ class DetailPage extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(12, 8, 0, 8),
+                padding: const EdgeInsets.fromLTRB(12, 8, 8, 8),
                 child: Row(
                   children: [
                     Icon(
@@ -117,6 +117,7 @@ class DetailPage extends StatelessWidget {
                     EdgeInsets.symmetric(vertical: 2.0.wp, horizontal: 5.0.wp),
                 child: TextFormField(
                   controller: homeCtr.editCtr,
+                  style: TextStyle(color: txtTheme.bodyText2?.color,fontWeight: FontWeight.normal),
                   autofocus: true,
                   decoration: InputDecoration(
                     focusedBorder: UnderlineInputBorder(

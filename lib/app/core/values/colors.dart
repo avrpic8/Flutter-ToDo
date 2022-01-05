@@ -15,13 +15,15 @@ const blue = Color(0xff2b60e6);
  *   Dark Themes Color Palette
  */
 
+/// Theme Colors
+const primaryColorDark = Colors.orangeAccent;
 
-/// Text colors Dark
+/// Text colors
 final Color primaryTextColorDark = Colors.white70;
 const Color secondryTextColorDark = Colors.white24;
 const Color subTitleTextColorDark = Colors.orangeAccent;
 
-/// Toggle switch enable disable colors Dark
+/// Toggle switch enable disable colors
 const Color thumbColorDark = Colors.orangeAccent;
 final Color trackColorDark = Colors.orangeAccent.withOpacity(0.6);
 
@@ -30,7 +32,11 @@ final Color trackColorDark = Colors.orangeAccent.withOpacity(0.6);
  *   Light Themes Color Palette
  */
 
-/// Text colors Light
+/// Theme Colors
+const primaryColorLight = Colors.blue;
+
+
+/// Text colors
 const Color primaryTextColorLight = Colors.black;
 const Color secondryTextColorLight = Color(0xf0242424);
 const Color subTitleTextColorLight = Colors.blue;

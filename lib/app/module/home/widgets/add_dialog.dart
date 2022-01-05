@@ -77,8 +77,9 @@ class AddDialog extends StatelessWidget {
                     borderSide: BorderSide(color: Colors.grey.shade400),
                   ),
                   hintText: 'type_your_todo'.tr,
-                  hintStyle: txtTheme.caption?.copyWith(fontSize: 13),
+                  hintStyle: txtTheme.caption?.copyWith(fontSize: 12),
                 ),
+                style: TextStyle(color: txtTheme.bodyText2?.color,fontWeight: FontWeight.normal),
                 autofocus: true,
                 validator: (value) {
                   if (value == null || value.trim().isEmpty) {

@@ -24,6 +24,7 @@ class MyAppTheme {
 
     return base.copyWith(
       colorScheme: base.colorScheme.copyWith(
+          primary: primaryColorDark,
           secondary: Colors.orangeAccent,
           onSecondary: Colors.white,
           background: Colors.black12,
@@ -52,7 +53,7 @@ class MyAppTheme {
 
     return base.copyWith(
       colorScheme: base.colorScheme.copyWith(
-          primary: Colors.blue,
+          primary: primaryColorLight,
           secondary: Colors.lightBlueAccent,
           onSecondary: Colors.white,
           background: Colors.white,
