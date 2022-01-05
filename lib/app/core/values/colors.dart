@@ -42,5 +42,9 @@ const Color secondryTextColorLight = Color(0xf0242424);
 const Color subTitleTextColorLight = Colors.blue;
 
 
+/// Layers colors
+const Color layerOneBg = Color(0x80FFFFFF);
+
+
 
 

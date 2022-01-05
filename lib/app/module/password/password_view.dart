@@ -1,28 +1,33 @@
 import 'package:flutter/material.dart';
-import 'package:to_do/app/core/util/extentions.dart';
 
 class PasswordPage extends StatelessWidget {
   const PasswordPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-
     final theme = Theme.of(context);
     final txtTheme = Theme.of(context).textTheme;
 
+    final width = MediaQuery.of(context).size.width * 0.9;
+    final height = MediaQuery.of(context).size.height * 0.4;
+
     return Scaffold(
       body: SafeArea(
-        child: ListView(
-          children: [
-            Padding(
-              padding: EdgeInsets.all(4.0.wp),
-              child: Text(
-                'Password',
-                style: txtTheme.headline6,
-              ),
-            ),
-          ],
-        ),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+
+            children: [
+              Card(color: Color(0xff212121),
+              child: Column(
+                children: [
+                  TextField()
+                ],
+              ),)
+            ],
+          ),
+        )
       ),
     );
   }
