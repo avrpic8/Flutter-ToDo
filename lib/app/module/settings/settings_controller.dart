@@ -7,8 +7,6 @@ import 'package:to_do/app/data/services/storage/services.dart';
 import 'package:to_do/app/module/home/home_controller.dart';
 
 class SettingsController extends GetxController {
-  final _storage = Get.find<StorageService>();
-
   // widget stats
   final isDark = false.obs;
   final locale = false.obs;
@@ -82,23 +80,20 @@ class SettingsController extends GetxController {
   void removeAllTodos() {
     final Color backgroundColor;
     final Color textColor;
-    if(isDark.value){
+    if (isDark.value) {
       backgroundColor = Colors.amber;
       textColor = Colors.black;
-    }else{
+    } else {
       backgroundColor = Colors.lightBlue;
       textColor = Colors.white;
     }
 
     final homCtr = Get.find<HomeController>();
     if (homCtr.tasks.isEmpty) {
-      Get.snackbar(
-        'attention'.tr,
-        'you_dont_have_any_todos_for_now'.tr,
-        snackPosition: SnackPosition.TOP,
-        backgroundColor: backgroundColor,
-        colorText: textColor
-      );
+      Get.snackbar('attention'.tr, 'you_dont_have_any_todos_for_now'.tr,
+          snackPosition: SnackPosition.TOP,
+          backgroundColor: backgroundColor,
+          colorText: textColor);
     } else {
       Get.defaultDialog(
         radius: 5,
@@ -108,13 +103,10 @@ class SettingsController extends GetxController {
             onPressed: () {
               homCtr.tasks.clear();
               Get.back();
-              Get.snackbar(
-                  'attention'.tr,
-                  'all_todos_hase_been_removed'.tr,
+              Get.snackbar('attention'.tr, 'all_todos_hase_been_removed'.tr,
                   snackPosition: SnackPosition.TOP,
                   backgroundColor: Colors.amber,
-                  colorText: Colors.black
-              );
+                  colorText: Colors.black);
             },
             child: Text('ok'.tr)),
         cancel: TextButton(

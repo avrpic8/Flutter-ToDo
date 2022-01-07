@@ -25,7 +25,8 @@ class Messages extends Translations {
           'please_enter_your_new_item': 'Please enter your new item',
           'completed': 'Completed',
           'attention': 'Attention!',
-          'do_you_want_to_reverse_this_operation': 'Do you want to reverse this operation?',
+          'do_you_want_to_reverse_this_operation':
+              'Do you want to reverse this operation?',
           'undo': 'Undo',
           'empty_task': 'Empty Task',
           'language': 'Language',
@@ -45,7 +46,7 @@ class Messages extends Translations {
           'dataBase': 'DataBase',
           'manage_your_all_todos': 'Manage your all todos',
           'clear_all': 'Clear all',
-          'you_dont_have_any_todos_for_now':'You dont have any todos for now.',
+          'you_dont_have_any_todos_for_now': 'You dont have any todos for now.',
           'alert': 'Alert',
           'this_operation_cant_reverse': 'This operation cant reverse!',
           'all_todos_hase_been_removed': 'All todos hase been removed!',
@@ -57,8 +58,17 @@ class Messages extends Translations {
           'add_to': 'Add to',
           'press_back_again_to_exit': 'Press back again to exit',
           'type_your_todo': 'Type your todo',
-          'please_add_a_task_first':'Please add a task first!',
-          'delete_success':'Delete Success'
+          'please_add_a_task_first': 'Please add a task first!',
+          'delete_success': 'Delete Success',
+          'ask_for_password_in_startup': 'Ask for password in startup',
+          'enter_your_new_password': 'Enter your new password',
+          'please_fill_the_password': 'Please fill the password',
+          'please_length_must_be_6_character_or_more':
+              'Please length must be 6 character or more',
+          'new_password': 'New password',
+          'the_enterd_passwords_not_match': 'The enterd passwords not match',
+          'confirm_password': 'Confirm password',
+          'password_successfully_saved': 'Password successfully saved'
         },
         'fa': {
           'my_list': 'لیست من',
@@ -102,7 +112,8 @@ class Messages extends Translations {
           'dataBase': 'پایگاه داده',
           'manage_your_all_todos': 'مدیریت تمام برنامه ها',
           'clear_all': 'حذف همه',
-          'you_dont_have_any_todos_for_now':'شما فعلا هیچ برنامه برای حذف ندارید.',
+          'you_dont_have_any_todos_for_now':
+              'شما فعلا هیچ برنامه برای حذف ندارید.',
           'alert': 'هشدار',
           'this_operation_cant_reverse': 'این عملیات قابل بازگشت نیست!',
           'all_todos_hase_been_removed': 'تمام برنامه های شما حذف شد',
@@ -114,8 +125,17 @@ class Messages extends Translations {
           'add_to': 'به کدام دسته اضافه شود',
           'press_back_again_to_exit': 'کلید بازگشت را یک باره دیگر فشار دهید',
           'type_your_todo': 'برنامه خود را بنویسید',
-          'please_add_a_task_first':'ابتدا یک گروه ایجاد کنید!',
-          'delete_success':'گروه موردنظر پاک شد!'
+          'please_add_a_task_first': 'ابتدا یک گروه ایجاد کنید!',
+          'delete_success': 'گروه موردنظر پاک شد!',
+          'ask_for_password_in_startup': 'برای ورود به برنامه رمز پرسیده شود',
+          'enter_your_new_password': 'رمز جدید را وارد کنید',
+          'please_fill_the_password': 'لطفا فیلد رمز را پر کنید',
+          'please_length_must_be_6_character_or_more':
+              'طول رمز باید حداقل 6 کاراکتر باشد',
+          'new_password': 'رمز جدید',
+          'the_enterd_passwords_not_match': 'رمز وارد شده با یکدیگر یکسان نیست',
+          'confirm_password': 'تایید رمز وارد شده',
+          'password_successfully_saved': 'رمز ورود تغییر کرد'
         }
-  };
+      };
 }

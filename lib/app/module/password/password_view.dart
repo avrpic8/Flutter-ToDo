@@ -1,33 +1,86 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:to_do/app/core/util/extentions.dart';
+import 'package:to_do/app/module/password/password_controller.dart';
+import 'package:to_do/app/module/settings/widgets/SingleRowSetting.dart';
+import 'widget/password_gen.dart';
 
-class PasswordPage extends StatelessWidget {
+class PasswordPage extends GetView<PasswordController> {
   const PasswordPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final txtTheme = Theme.of(context).textTheme;
-
-    final width = MediaQuery.of(context).size.width * 0.9;
-    final height = MediaQuery.of(context).size.height * 0.4;
+    final txtTheme = theme.textTheme;
 
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-
+          padding: EdgeInsets.all(4.0.wp),
+          child: Stack(
             children: [
-              Card(color: Color(0xff212121),
-              child: Column(
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  TextField()
+                  Text(
+                    'password'.tr,
+                    style: txtTheme.headline6,
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  SingleRowSetting(
+                    icons: Icons.lock,
+                    titleSetting: 'ask_for_password_in_startup'.tr,
+                    subtitle: Obx(
+                      () => Text(
+                        controller.requirePass.value
+                            ? 'enabled'.tr
+                            : 'disabled'.tr,
+                        style: txtTheme.caption?.copyWith(fontSize: 12),
+                      ),
+                    ),
+                    switchWidget: Obx(
+                      () => Checkbox(
+                        value: controller.requirePass.value,
+                        onChanged: (newValue) {
+                          controller.togglePassword(newValue!);
+                        },
+                      ),
+                    ),
+                    showDivider: false,
+                  ),
+                  SizedBox(
+                    width: double.infinity,
+                    child: PasswordGen(
+                      controller: controller,
+                      theme: theme,
+                    ),
+                  ),
                 ],
-              ),)
+              ),
+              Positioned(
+                bottom: 0,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      primary: theme.colorScheme.secondary,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20)),
+                      minimumSize: const Size(150, 40)),
+                  onPressed: () {
+                    if (controller.formKey.currentState!.validate()) {
+                      controller.savePasswordAndExit();
+                    }
+                  },
+                  child: Text(
+                    'confirm'.tr,
+                    style: txtTheme.bodyText2?.copyWith(color: Colors.white),
+                  ),
+                ),
+              )
             ],
           ),
-        )
+        ),
       ),
     );
   }
