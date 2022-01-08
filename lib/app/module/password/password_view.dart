@@ -30,64 +30,95 @@ class PasswordPage extends GetView<PasswordController> {
                       style: txtTheme.headline6,
                     ),
                   ),
-                  Visibility(
-                    visible: true,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(
-                          height: 40,
-                        ),
-                        SingleRowSetting(
-                          icons: Icons.lock,
-                          titleSetting: 'ask_for_password_in_startup'.tr,
-                          subtitle: Obx(
-                            () => Text(
-                              controller.requirePass.value
-                                  ? 'enabled'.tr
-                                  : 'disabled'.tr,
-                              style: txtTheme.caption?.copyWith(fontSize: 12),
+                  Obx(
+                    () => Visibility(
+                      visible: controller.permission.value ? false : true,
+                      child: Center(
+                        child: TextField(
+                          controller: controller.editAskPassCtr,
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                            labelText: 'confirm_password'.tr,
+                            labelStyle: theme.textTheme.caption?.copyWith(
+                              fontSize: 14,
+                              color: theme.colorScheme.secondary,
                             ),
-                          ),
-                          switchWidget: Obx(
-                            () => Checkbox(
-                              value: controller.requirePass.value,
-                              onChanged: (newValue) {
-                                controller.togglePassword(newValue!);
+                            suffixIcon: IconButton(
+                              icon: Icon(Icons.check),
+                              onPressed: () {
+                                controller.comparePassword(
+                                    controller.editAskPassCtr.text);
                               },
                             ),
                           ),
-                          showDivider: false,
+                          obscureText: true,
                         ),
-                        SizedBox(
-                          width: double.infinity,
-                          child: PasswordGen(
-                            controller: controller,
-                            theme: theme,
-                          ),
-                        ),
-                      ],
+                      ),
                     ),
                   ),
-                  Visibility(
-                    visible: true,
-                    child: Positioned(
-                      bottom: 0,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            primary: theme.colorScheme.secondary,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20)),
-                            minimumSize: const Size(150, 40)),
-                        onPressed: () {
-                          if (controller.formKey.currentState!.validate()) {
-                            controller.savePasswordAndExit();
-                          }
-                        },
-                        child: Text(
-                          'confirm'.tr,
-                          style:
-                              txtTheme.bodyText2?.copyWith(color: Colors.white),
+                  Obx(
+                    () => Visibility(
+                      visible: controller.permission.value ? true : false,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(
+                            height: 40,
+                          ),
+                          SingleRowSetting(
+                            icons: Icons.lock,
+                            titleSetting: 'ask_for_password_in_startup'.tr,
+                            subtitle: Obx(
+                              () => Text(
+                                controller.requirePass.value
+                                    ? 'enabled'.tr
+                                    : 'disabled'.tr,
+                                style: txtTheme.caption?.copyWith(fontSize: 12),
+                              ),
+                            ),
+                            switchWidget: Obx(
+                              () => Checkbox(
+                                value: controller.requirePass.value,
+                                onChanged: (newValue) {
+                                  controller.togglePassword(newValue!);
+                                },
+                              ),
+                            ),
+                            showDivider: false,
+                          ),
+                          SizedBox(
+                            width: double.infinity,
+                            child: PasswordGen(
+                              controller: controller,
+                              theme: theme,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Obx(
+                    () => Visibility(
+                      visible: controller.permission.value ? true : false,
+                      child: Positioned(
+                        bottom: 0,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              primary: theme.colorScheme.secondary,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20)),
+                              minimumSize: const Size(150, 40)),
+                          onPressed: () {
+                            if (controller.formKey.currentState!.validate()) {
+                              controller.setPermission(false);
+                              controller.savePasswordAndExit();
+                            }
+                          },
+                          child: Text(
+                            'confirm'.tr,
+                            style: txtTheme.bodyText2
+                                ?.copyWith(color: Colors.white),
+                          ),
                         ),
                       ),
                     ),

@@ -15,10 +15,10 @@ class StorageService extends GetxService {
     await _box.writeIfNull(
       appSettingsKey,
       jsonEncode(
-        AppSettings(
-            isDark: false, lan: "en", requirePass: false, splash: true),
+        AppSettings(isDark: false, lan: "en", requirePass: false, splash: true),
       ),
     );
+    await _box.writeIfNull('permission', true);
     return this;
   }
 
@@ -30,7 +30,7 @@ class StorageService extends GetxService {
     await _box.write(key, value);
   }
 
-  void clearAllTodos(String key){
+  void clearAllTodos(String key) {
     _box.remove(key);
   }
 }
