@@ -26,7 +26,7 @@ class PasswordPage extends GetView<PasswordController> {
                 children: [
                   Positioned(
                     child: Text(
-                      'password'.tr,
+                      'password_manage'.tr,
                       style: txtTheme.headline6,
                     ),
                   ),
@@ -38,7 +38,7 @@ class PasswordPage extends GetView<PasswordController> {
                           controller: controller.editAskPassCtr,
                           decoration: InputDecoration(
                             border: OutlineInputBorder(),
-                            labelText: 'confirm_password'.tr,
+                            labelText: 'input_password'.tr,
                             labelStyle: theme.textTheme.caption?.copyWith(
                               fontSize: 14,
                               color: theme.colorScheme.secondary,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
+import 'package:to_do/app/core/util/constants.dart';
 import 'package:to_do/app/data/services/storage/services.dart';
 import 'package:to_do/app/module/settings/settings_controller.dart';
 
@@ -23,7 +24,7 @@ class PasswordController extends GetxController {
     super.onInit();
 
     requirePass.value = settingCtr.settings.requirePass;
-    permission.value = _storage.read('permission');
+    permission.value = _storage.read(allowAccess);
   }
 
   void togglePassword(bool flag) {
@@ -43,7 +44,7 @@ class PasswordController extends GetxController {
 
   void setPermission(bool newValue) {
     permission.value = newValue;
-    _storage.write('permission', permission.value);
+    _storage.write(allowAccess, permission.value);
   }
 
   void comparePassword(String pass) {
@@ -51,7 +52,11 @@ class PasswordController extends GetxController {
     String? savedPass = settingCtr.settings.password;
     if (savedPass == pass) {
       permission.value = true;
-    } else
+    } else {
       permission.value = false;
+      EasyLoading.showToast('the_password_is_wrong'.tr,
+          duration: 2.seconds,
+          toastPosition: EasyLoadingToastPosition.center);
+    }
   }
 }

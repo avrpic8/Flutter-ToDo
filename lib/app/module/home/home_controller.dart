@@ -2,11 +2,19 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
+import 'package:to_do/app/core/util/constants.dart';
 import 'package:to_do/app/data/models/task.dart';
 import 'package:to_do/app/data/services/storage/repository.dart';
+import 'package:to_do/app/data/services/storage/services.dart';
+import 'package:to_do/app/module/auth/PassCheck.dart';
+import 'package:to_do/app/module/settings/settings_controller.dart';
+import 'package:to_do/main.dart';
 
 class HomeController extends GetxController {
   TaskRepository taskRepository;
+
+  final settingCtr = Get.find<SettingsController>();
+  final _storage = Get.find<StorageService>();
 
   final formKey = GlobalKey<FormState>();
   final editCtr = TextEditingController();
@@ -26,6 +34,14 @@ class HomeController extends GetxController {
     super.onInit();
     tasks.assignAll(taskRepository.readTasks());
     ever(tasks, (_) => taskRepository.writeTasks(tasks));
+  }
+
+  @override
+  void onReady() {
+    super.onReady();
+    var pass = _storage.read(allowAccess);
+    if(settingCtr.settings.requirePass && pass!=null && Get.arguments != 'passed')
+      Get.off(PassCheck());
   }
 
   void changeChipIndex(int value) {

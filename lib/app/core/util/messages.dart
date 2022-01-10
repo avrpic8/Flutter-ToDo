@@ -68,7 +68,10 @@ class Messages extends Translations {
           'new_password': 'New password',
           'the_enterd_passwords_not_match': 'The enterd passwords not match',
           'confirm_password': 'Confirm password',
-          'password_successfully_saved': 'Password successfully saved'
+          'password_successfully_saved': 'Password successfully saved',
+          'password_manage': 'Password manage',
+          'input_password': 'Input password',
+          'the_password_is_wrong': 'The password is wrong'
         },
         'fa': {
           'my_list': 'لیست من',
@@ -135,7 +138,10 @@ class Messages extends Translations {
           'new_password': 'رمز جدید',
           'the_enterd_passwords_not_match': 'رمز وارد شده با یکدیگر یکسان نیست',
           'confirm_password': 'تایید رمز وارد شده',
-          'password_successfully_saved': 'رمز ورود تغییر کرد'
+          'password_successfully_saved': 'رمز ورود تغییر کرد',
+          'password_manage': 'مدیریت رمز',
+          'input_password': 'ورود رمز',
+          'the_password_is_wrong': 'رمز وارد شده صحیح نیست'
         }
       };
 }

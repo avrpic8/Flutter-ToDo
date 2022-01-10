@@ -1,5 +1,6 @@
 const taskKey = 'tasks';
 const appSettingsKey = 'appSettings';
+const allowAccess = 'permission';
 
 const int homeIndex = 0;
 const int reportIndex = 1;
