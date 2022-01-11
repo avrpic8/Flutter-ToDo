@@ -73,11 +73,9 @@ class HomePage extends GetView<HomeController> {
                     ),
                   )),
               _navigate(
-                  key: _reportKey,
                   index: reportIndex,
                   screen: ReportPage(tasks: controller.tasks)),
               _navigate(
-                  key: _settingsKey,
                   index: settingsIndex,
                   screen: SettingsPage())
             ],

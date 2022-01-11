@@ -71,7 +71,8 @@ class Messages extends Translations {
           'password_successfully_saved': 'Password successfully saved',
           'password_manage': 'Password manage',
           'input_password': 'Input password',
-          'the_password_is_wrong': 'The password is wrong'
+          'the_password_is_wrong': 'The password is wrong',
+          'password_must_be_set': 'Password must be set'
         },
         'fa': {
           'my_list': 'لیست من',
@@ -141,7 +142,8 @@ class Messages extends Translations {
           'password_successfully_saved': 'رمز ورود تغییر کرد',
           'password_manage': 'مدیریت رمز',
           'input_password': 'ورود رمز',
-          'the_password_is_wrong': 'رمز وارد شده صحیح نیست'
+          'the_password_is_wrong': 'رمز وارد شده صحیح نیست',
+          'password_must_be_set': 'رمز ورود باید انتخاب شود'
         }
       };
 }

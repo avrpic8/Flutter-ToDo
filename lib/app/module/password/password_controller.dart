@@ -59,4 +59,16 @@ class PasswordController extends GetxController {
           toastPosition: EasyLoadingToastPosition.center);
     }
   }
+
+  Future<bool> onWillPop() async{
+    String? savedPass = settingCtr.settings.password;
+    if(requirePass.value && savedPass == null){
+      EasyLoading.showToast('password_must_be_set'.tr,
+          duration: 2000.milliseconds,
+          toastPosition: EasyLoadingToastPosition.center);
+      return false;
+    }else{
+      return true;
+    }
+  }
 }
