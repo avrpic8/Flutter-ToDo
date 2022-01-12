@@ -4,7 +4,8 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:to_do/app/data/models/task.dart';
 import 'package:to_do/app/data/services/storage/repository.dart';
-import 'package:to_do/app/module/auth/PassCheck.dart';
+import 'package:to_do/app/module/auth/pass_check_view.dart';
+import 'package:to_do/app/module/auth/pass_check_binding.dart';
 import 'package:to_do/app/module/settings/settings_controller.dart';
 
 class HomeController extends GetxController {
@@ -35,8 +36,8 @@ class HomeController extends GetxController {
   @override
   void onReady() {
     super.onReady();
-    if(settingCtr.settings.requirePass && Get.arguments != 'passed')
-      Get.off(PassCheck());
+    if (settingCtr.settings.requirePass && Get.arguments != 'passed')
+      Get.off(PassCheckView(), binding: PassCheckBinding());
   }
 
   void changeChipIndex(int value) {

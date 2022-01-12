@@ -8,6 +8,8 @@ import 'package:to_do/app/data/providers/task/settings_provider.dart';
 import 'package:to_do/app/data/services/storage/services.dart';
 import 'package:to_do/app/module/home/home_binding.dart';
 import 'package:to_do/app/module/home/home_view.dart';
+import 'package:to_do/app/module/onBoarding/on_board_binding.dart';
+import 'package:to_do/app/module/onBoarding/on_board_view.dart';
 import 'package:to_do/app/module/report/report_binding.dart';
 import 'package:to_do/app/module/report/report_view.dart';
 import 'package:to_do/app/module/settings/settings_controller.dart';
@@ -34,8 +36,9 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       translations: Messages(),
       locale: setCtr.settings.lan == 'en' ? Locale('en') : Locale('fa'),
-      initialBinding: HomeBinding(),
-      home: setCtr.settings.splash ? SplashPage() : HomePage(),
+      initialBinding: OnBoardingBinding(), //HomeBinding(),
+      home:
+          OnBoardingView(), //setCtr.settings.splash ? SplashPage() : HomePage(),
       getPages: [
         GetPage(
           name: '/',

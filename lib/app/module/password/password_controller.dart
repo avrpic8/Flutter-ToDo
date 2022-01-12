@@ -55,20 +55,27 @@ class PasswordController extends GetxController {
     } else {
       permission.value = false;
       EasyLoading.showToast('the_password_is_wrong'.tr,
-          duration: 2.seconds,
-          toastPosition: EasyLoadingToastPosition.center);
+          duration: 2.seconds, toastPosition: EasyLoadingToastPosition.center);
     }
   }
 
-  Future<bool> onWillPop() async{
+  Future<bool> onWillPop() async {
     String? savedPass = settingCtr.settings.password;
-    if(requirePass.value && savedPass == null){
+    if (requirePass.value && savedPass == null) {
       EasyLoading.showToast('password_must_be_set'.tr,
           duration: 2000.milliseconds,
           toastPosition: EasyLoadingToastPosition.center);
       return false;
-    }else{
+    } else {
       return true;
     }
+  }
+
+  @override
+  void onClose() {
+    editAskPassCtr.dispose();
+    editPassCtr.dispose();
+    editConfirmPassCtr.dispose();
+    super.onClose();
   }
 }

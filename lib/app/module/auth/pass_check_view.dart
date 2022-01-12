@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:to_do/app/core/util/extentions.dart';
-import 'package:to_do/app/module/auth/pass_controller.dart';
+import 'package:to_do/app/module/auth/pass_check_controller.dart';
 
-class PassCheck extends StatelessWidget {
-  final passCtr = Get.put(PassController());
-  PassCheck({Key? key}) : super(key: key);
+class PassCheckView extends GetView<PassCheckController> {
+  PassCheckView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +29,7 @@ class PassCheck extends StatelessWidget {
                       height: 15,
                     ),
                     TextField(
-                      controller: passCtr.editAskPassCtr,
+                      controller: controller.editAskPassCtr,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         labelText: 'input_password'.tr,
@@ -41,8 +40,8 @@ class PassCheck extends StatelessWidget {
                         suffixIcon: IconButton(
                           icon: Icon(Icons.check),
                           onPressed: () {
-                            passCtr
-                                .comparePassword(passCtr.editAskPassCtr.text);
+                            controller.comparePassword(
+                                controller.editAskPassCtr.text);
                           },
                         ),
                       ),

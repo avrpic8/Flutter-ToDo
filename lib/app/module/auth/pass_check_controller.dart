@@ -5,7 +5,7 @@ import 'package:to_do/app/module/home/home_binding.dart';
 import 'package:to_do/app/module/home/home_view.dart';
 import 'package:to_do/app/module/settings/settings_controller.dart';
 
-class PassController extends GetxController {
+class PassCheckController extends GetxController {
   final settingCtr = Get.find<SettingsController>();
   final editAskPassCtr = TextEditingController();
 

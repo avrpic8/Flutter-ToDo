@@ -15,7 +15,7 @@ class PasswordPage extends GetView<PasswordController> {
     final txtTheme = theme.textTheme;
 
     return WillPopScope(
-      onWillPop: ()=> controller.onWillPop(),
+      onWillPop: () => controller.onWillPop(),
       child: Scaffold(
         body: SafeArea(
           child: SingleChildScrollView(
@@ -75,7 +75,8 @@ class PasswordPage extends GetView<PasswordController> {
                                   controller.requirePass.value
                                       ? 'enabled'.tr
                                       : 'disabled'.tr,
-                                  style: txtTheme.caption?.copyWith(fontSize: 12),
+                                  style:
+                                      txtTheme.caption?.copyWith(fontSize: 12),
                                 ),
                               ),
                               switchWidget: Obx(

@@ -23,8 +23,7 @@ class AddCard extends StatelessWidget {
       height: squareWidth / 2,
       margin: EdgeInsets.all(3.0.wp),
       child: InkWell(
-        onTap: () async{
-
+        onTap: () async {
           await Get.defaultDialog(
             titlePadding: EdgeInsets.symmetric(vertical: 5.0.wp),
             radius: 5,
@@ -42,15 +41,17 @@ class AddCard extends StatelessWidget {
                         padding: EdgeInsets.symmetric(horizontal: 3.0.wp),
                         child: TextFormField(
                           controller: homeCtr.editCtr,
-                          style: TextStyle(color: txtTheme.bodyText2?.color,fontWeight: FontWeight.normal),
+                          style: TextStyle(
+                              color: txtTheme.bodyText2?.color,
+                              fontWeight: FontWeight.normal),
                           decoration: InputDecoration(
                               border: OutlineInputBorder(),
                               focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(color: theme.colorScheme.primary)
-                              ),
+                                  borderSide: BorderSide(
+                                      color: theme.colorScheme.primary)),
                               labelText: 'title_task'.tr,
-                              labelStyle: TextStyle(color: theme.colorScheme.primary)
-                          ),
+                              labelStyle:
+                                  TextStyle(color: theme.colorScheme.primary)),
                           validator: (value) {
                             if (value == null || value.trim().isEmpty) {
                               return 'error_task_title'.tr;
@@ -67,22 +68,22 @@ class AddCard extends StatelessWidget {
                               .map(
                                 (e) => Obx(
                                   () {
-                                final index = icons.indexOf(e);
-                                return ChoiceChip(
-                                  selectedColor: Colors.grey[200],
-                                  pressElevation: 0,
-                                  backgroundColor: Colors.white,
-                                  label: e,
-                                  selected:
-                                  homeCtr.chipIndex.value == index,
-                                  onSelected: (bool selected) {
-                                    homeCtr.chipIndex.value =
-                                    selected ? index : 0;
+                                    final index = icons.indexOf(e);
+                                    return ChoiceChip(
+                                      selectedColor: Colors.grey[200],
+                                      pressElevation: 0,
+                                      backgroundColor: Colors.white,
+                                      label: e,
+                                      selected:
+                                          homeCtr.chipIndex.value == index,
+                                      onSelected: (bool selected) {
+                                        homeCtr.chipIndex.value =
+                                            selected ? index : 0;
+                                      },
+                                    );
                                   },
-                                );
-                              },
-                            ),
-                          )
+                                ),
+                              )
                               .toList(),
                         ),
                       ),
@@ -94,12 +95,10 @@ class AddCard extends StatelessWidget {
                             minimumSize: const Size(150, 40)),
                         onPressed: () {
                           if (homeCtr.formKey.currentState!.validate()) {
-                            int icon = icons[homeCtr.chipIndex.value]
-                                .icon!
-                                .codePoint;
-                            String color = icons[homeCtr.chipIndex.value]
-                                .color!
-                                .toHex();
+                            int icon =
+                                icons[homeCtr.chipIndex.value].icon!.codePoint;
+                            String color =
+                                icons[homeCtr.chipIndex.value].color!.toHex();
                             var task = Task(
                                 title: homeCtr.editCtr.text,
                                 icon: icon,
@@ -110,7 +109,11 @@ class AddCard extends StatelessWidget {
                                 : EasyLoading.showError('duplicated'.tr);
                           }
                         },
-                        child: Text('confirm'.tr, style: txtTheme.bodyText2?.copyWith(color: Colors.white),),
+                        child: Text(
+                          'confirm'.tr,
+                          style:
+                              txtTheme.bodyText2?.copyWith(color: Colors.white),
+                        ),
                       ),
                     ],
                   ),
