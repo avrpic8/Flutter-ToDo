@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:to_do/app/core/util/constants.dart';
 import 'package:to_do/app/data/models/on_board.dart';
-import 'package:to_do/app/module/home/home_binding.dart';
+import 'package:to_do/app/data/services/storage/services.dart';
 import 'package:to_do/app/module/home/home_view.dart';
 
 class OnBoardingController extends GetxController {
+  final _storage = Get.find<StorageService>();
+
   RxInt selectedPageIndex = 0.obs;
   var pageController = PageController();
 
@@ -27,9 +30,16 @@ class OnBoardingController extends GetxController {
 
   void forwardAction() {
     if (isLastPage) {
-      Get.off(HomePage(), binding: HomeBinding());
+      _storage.write(showOnboard, false);
+      Get.off(() => HomePage());
     } else {
       pageController.nextPage(duration: 300.milliseconds, curve: Curves.ease);
     }
+  }
+
+  @override
+  void onClose() {
+    pageController.dispose();
+    super.onClose();
   }
 }

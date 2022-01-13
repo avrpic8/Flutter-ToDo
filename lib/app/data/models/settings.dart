@@ -13,17 +13,18 @@ class AppSettings {
       this.password});
 
   factory AppSettings.fromJson(Map<String, dynamic> json) => AppSettings(
-      isDark: json['isDark'],
-      lan: json['lan'],
-      requirePass: json['requirePass'],
-      splash: json['splash'],
-      password: json['password']);
+        isDark: json['isDark'],
+        lan: json['lan'],
+        requirePass: json['requirePass'],
+        splash: json['splash'],
+        password: json['password'],
+      );
 
   Map<String, dynamic> toJson() => {
         'isDark': isDark,
         'lan': lan,
         'requirePass': requirePass,
         'splash': splash,
-        'password': password
+        'password': password,
       };
 }

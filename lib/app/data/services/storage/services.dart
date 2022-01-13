@@ -18,7 +18,8 @@ class StorageService extends GetxService {
         AppSettings(isDark: false, lan: "en", requirePass: false, splash: true),
       ),
     );
-    await _box.writeIfNull('permission', true);
+    await _box.writeIfNull(allowAccess, true);
+    await _box.writeIfNull(showOnboard, true);
     return this;
   }
 
